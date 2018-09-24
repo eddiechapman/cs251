@@ -1,3 +1,16 @@
+/************************************************************
+ * Eddie Chapman, Homework #2, CompSt 750
+ * 
+ * This program receives user input representing a list of dates. It parses them
+ * based on format, validates their day, month, and year components, and prints
+ * them in a standardized format.
+ * 
+ * I discussed this assignment with Mason Baran. We created a flowchart together
+ * for the main() function. He also showed me how to count the number of dashes 
+ * using .replace("-", "") and .length().
+ * 
+ **************************************************************/
+
 package cs251_HW2;
 import java.util.Scanner;
 
