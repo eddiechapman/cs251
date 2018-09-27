@@ -11,17 +11,24 @@ public class CardGame {
 	private int cardsDealt;
 	private boolean hasDealtCards;
 	
+	// Should the deck be initialized at the top of the class or in the constructor?
 	public CardGame(int totalPlayers) {
-		return;
+		this. 
 	}
 	
 	public int getTotalCardsDealt() {
 		return;
 	}
 	
+	// Shuffle the deck by setting all values to true.
 	public void resetDeck() {
-		return;
-	}
+		
+		for (int card = 0; card < deck.length; card ++) 
+		{
+			deck[card] = true;
+		}
+		
+	} // end resetDeck
 	
 	public void dealHands() {
 		return;
