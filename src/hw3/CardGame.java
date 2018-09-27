@@ -11,6 +11,7 @@ public class CardGame
 	private String[][] players;
 	private int cardsDealt;
 	private boolean hasDealtCards;
+	private boolean hasShownHands;
 	
 	// TODO: Should the deck be initialized at the top of the class or in the constructor?
 	// TODO: Where does input validation go? The driver?
@@ -28,6 +29,8 @@ public class CardGame
 		
 		deck = new boolean[52];
 		cardsDealt = 0;	
+		hasDealtCards = false;
+		hasShownHands = false;
 		
 	} // end CardGame
 	
@@ -41,7 +44,6 @@ public class CardGame
 	/*
 	 *  Shuffle the deck by setting all values to true.
 	 */
-	// TODO: Does this need to reset cardsDealt or hasDealtCards as well?
 	public void resetDeck() 
 	{
 		for (int card = 0; card < deck.length; card ++) 
@@ -73,7 +75,6 @@ public class CardGame
 				for (int c = 0; c < players[p].length; c++)
 				{
 					players[p][c] = dealCard();
-					cardsDealt++;
 				}
 			}
 		}	
@@ -101,7 +102,8 @@ public class CardGame
 		} 
 		while (deck[card] == false);
 		
-		deck[card] = false;  // or, !deck[card] ?
+		deck[card] = false;
+		cardsDealt++;
 		
 		return convertCard(card);
 
@@ -119,16 +121,41 @@ public class CardGame
 		return cardNumbers[card % 13] + "|" + cardSuits[card % 4];
 	}
 	
+	
 	// TODO: Documentation
-	public void addPlayers(int playersToAdd) 
+	public boolean addPlayers(int playersToAdd) 
 	{
-		// TODO: ...
-		return;
-	}
+		int newPlayerCount = playersToAdd + players.length;
+		String[][] newPlayers = new String[newPlayerCount][5];
+		
+		if (newPlayerCount > 8 || newPlayerCount < players.length || hasShownHands == true)
+		{
+			return false;
+		}
+		else
+		{	
+			for (int p = 0; p < players.length; p++) 
+			{
+				for (int c = 0; c < players[p].length; c++) 
+				{
+					newPlayers[p][c] = players[p][c];
+				}
+			}
+			
+			players = newPlayers;
+			
+			return true;
+		}
+	
+	} // end addPlayers
+	
+	
 	
 	// TODO: Documentation
 	public void displayHands() 
 	{
+		hasShownHands = true;
+		
 		for (int p = 0; p < players.length; p++) 
 		{
 			System.out.print("Player " + (p + 1) + ":\t");
