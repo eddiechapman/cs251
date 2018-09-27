@@ -23,6 +23,8 @@ public class CardGame {
 	// Shuffle the deck by setting all values to true.
 	public void resetDeck() {
 		
+		// Does this need to reset cardsDealt or hasDealtCards as well?
+		
 		for (int card = 0; card < deck.length; card ++) 
 		{
 			deck[card] = true;
