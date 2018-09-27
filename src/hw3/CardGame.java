@@ -11,9 +11,15 @@ public class CardGame {
 	private int cardsDealt;
 	private boolean hasDealtCards;
 	
-	// Should the deck be initialized at the top of the class or in the constructor?
+	
 	public CardGame(int totalPlayers) {
-		this. 
+		// Should the deck be initialized at the top of the class or in the constructor?
+		// Where does input validation go? The driver?
+		if (totalPlayers > 1 && totalPlayers < 9) 
+		{
+			this.players = new String[totalPlayers][5]; 
+		}
+		
 	}
 	
 	public int getTotalCardsDealt() {
