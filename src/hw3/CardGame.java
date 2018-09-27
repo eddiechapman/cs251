@@ -1,7 +1,8 @@
 package hw3;
-import java.util.Scanner;
+import java.util.Random;
 
-public class CardGame {
+public class CardGame 
+{
 
 	private static final String[] cardNumbers = {"2","3","4","5","6","7","8","9","10","J","Q","K","A"};
 	private static final String[] cardSuits = {"D","H","C","S"};
@@ -15,16 +16,27 @@ public class CardGame {
 	// TODO: Where does input validation go? The driver?
 	public CardGame(int totalPlayers) 
 	{
+		
 		if (totalPlayers > 1 && totalPlayers < 9) 
 		{
-			this.players = new String[totalPlayers][5]; 
+			players = new String[totalPlayers][5];
 		}
+		else 
+		{
+			players = new String[2][5];
+		}
+		
+		deck = new boolean[52];
+		cardsDealt = 0;	
 		
 	} // end CardGame
 	
-	public int getTotalCardsDealt() {
-		return;
-	}
+	
+	public int getTotalCardsDealt() 
+	{
+		return cardsDealt;
+	} 
+	
 	
 	/*
 	 *  Shuffle the deck by setting all values to true.
@@ -36,6 +48,9 @@ public class CardGame {
 		{
 			deck[card] = true;
 		}
+		
+		cardsDealt = 0;
+		hasDealtCards = false;
 		
 	} // end resetDeck
 	
@@ -49,15 +64,16 @@ public class CardGame {
 		{
 			System.out.print("ERROR: Cards have already been dealt. Please reshuffle and try again.");	
 		}
-		
 		else 
 		{
 			hasDealtCards = true;
+			
 			for (int p = 0; p < players.length; p++)
 			{
 				for (int c = 0; c < players[p].length; c++)
 				{
 					players[p][c] = dealCard();
+					cardsDealt++;
 				}
 			}
 		}	
@@ -65,20 +81,67 @@ public class CardGame {
 	} // end dealHands
 	
 	
-	private String dealCard() {
+	/*
+	 * Deal one card from the deck.
+	 * 
+	 * Select a card in the deck using a randomly generated integer.
+	 * Repeat until a card selected that has not been dealt this round.
+	 * Mark the card as dealt. Return the number and suit of the card
+	 * using convertCard(). 
+	 */
+	private String dealCard() 
+	{
+		Random r = new Random();
+		
+		int card = 0;
+		
+		do 
+		{
+			card = r.nextInt(52);
+		} 
+		while (deck[card] == false);
+		
+		deck[card] = false;  // or, !deck[card] ?
+		
+		return convertCard(card);
+
+	} // end dealCard
+	
+	
+	/**
+	 * Match the "card" index position to a uniquely paired card number and suit.
+	 * 
+	 * @param card
+	 * @return String representing the number and suit of the card
+	 */
+	private String convertCard(int card) 
+	{
+		return cardNumbers[card % 13] + "|" + cardSuits[card % 4];
+	}
+	
+	// TODO: Documentation
+	public void addPlayers(int playersToAdd) 
+	{
+		// TODO: ...
 		return;
 	}
 	
-	private String convertCard(int card) {
-		return;
-	}
+	// TODO: Documentation
+	public void displayHands() 
+	{
+		for (int p = 0; p < players.length; p++) 
+		{
+			System.out.print("Player " + (p + 1) + ":\t");
+			
+			for (int c = 0; c < players[p].length; c++) 
+			{
+				System.out.print(players[p][c] + "\t");  // TODO: add "\n" to reduce the println statements?
+			}
+			System.out.println();
+		}
+		System.out.println();
+		
+	} // end displayHands
 	
-	public void addPlayers(int playersToAdd) {
-		return;
-	}
 	
-	public void displayHands() {
-		return;
-	}
-	
-}
+} // end CardGame
