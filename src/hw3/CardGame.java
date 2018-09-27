@@ -11,26 +11,25 @@ public class CardGame {
 	private int cardsDealt;
 	private boolean hasDealtCards;
 	
-	
-	public CardGame(int totalPlayers) {
-		// Should the deck be initialized at the top of the class or in the constructor?
-		// Where does input validation go? The driver?
+	// TODO: Should the deck be initialized at the top of the class or in the constructor?
+	// TODO: Where does input validation go? The driver?
+	public CardGame(int totalPlayers) 
+	{
 		if (totalPlayers > 1 && totalPlayers < 9) 
 		{
 			this.players = new String[totalPlayers][5]; 
 		}
 		
-	}
+	} // end CardGame
 	
 	public int getTotalCardsDealt() {
 		return;
 	}
 	
 	// Shuffle the deck by setting all values to true.
-	public void resetDeck() {
-		
-		// Does this need to reset cardsDealt or hasDealtCards as well?
-		
+	// TODO: Does this need to reset cardsDealt or hasDealtCards as well?
+	public void resetDeck() 
+	{
 		for (int card = 0; card < deck.length; card ++) 
 		{
 			deck[card] = true;
@@ -38,9 +37,18 @@ public class CardGame {
 		
 	} // end resetDeck
 	
-	public void dealHands() {
-		return;
-	}
+	public void dealHands() 
+	{
+		
+		for (int p = 0; p < players.length; p++)
+		{
+			for (int c = 0; c < players[p].length; c++)
+			{
+				players[p][c] = dealCard(deck);
+			}
+		}
+
+	} // end dealHands
 	
 	private String dealCard() {
 		return;
