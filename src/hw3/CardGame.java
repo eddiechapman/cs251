@@ -26,7 +26,9 @@ public class CardGame {
 		return;
 	}
 	
-	// Shuffle the deck by setting all values to true.
+	/*
+	 *  Shuffle the deck by setting all values to true.
+	 */
 	// TODO: Does this need to reset cardsDealt or hasDealtCards as well?
 	public void resetDeck() 
 	{
@@ -37,18 +39,31 @@ public class CardGame {
 		
 	} // end resetDeck
 	
+	
+	/*
+	 * Deal out cards to each player in the game.
+	 */
 	public void dealHands() 
 	{
-		
-		for (int p = 0; p < players.length; p++)
+		if (hasDealtCards == true) 
 		{
-			for (int c = 0; c < players[p].length; c++)
-			{
-				players[p][c] = dealCard(deck);
-			}
+			System.out.print("ERROR: Cards have already been dealt. Please reshuffle and try again.");	
 		}
+		
+		else 
+		{
+			hasDealtCards = true;
+			for (int p = 0; p < players.length; p++)
+			{
+				for (int c = 0; c < players[p].length; c++)
+				{
+					players[p][c] = dealCard();
+				}
+			}
+		}	
 
 	} // end dealHands
+	
 	
 	private String dealCard() {
 		return;
