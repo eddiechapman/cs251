@@ -128,8 +128,9 @@ public class CardGame
 		int newPlayerCount = playersToAdd + players.length;
 		String[][] newPlayers = new String[newPlayerCount][5];
 		
-		if (newPlayerCount > 8 || newPlayerCount < players.length || hasShownHands == true)
+		if (newPlayerCount > 8 || newPlayerCount < players.length)
 		{
+			
 			return false;
 		}
 		else
@@ -141,17 +142,24 @@ public class CardGame
 					newPlayers[p][c] = players[p][c];
 				}
 			}
-			
+			for (int p = 0; p < newPlayers.length; p++) 
+			{
+				for (int c = 0; c < newPlayers[p].length; c++)
+				{
+					if (newPlayers[p][c] != "") 
+					{
+						newPlayers[p][c] = dealCard();
+					}
+				}
+			}
 			players = newPlayers;
-			
 			return true;
 		}
 	
 	} // end addPlayers
 	
+
 	
-	
-	// TODO: Documentation
 	public void displayHands() 
 	{
 		hasShownHands = true;
@@ -162,7 +170,7 @@ public class CardGame
 			
 			for (int c = 0; c < players[p].length; c++) 
 			{
-				System.out.print(players[p][c] + "\t");  // TODO: add "\n" to reduce the println statements?
+				System.out.print(players[p][c] + "\t"); 
 			}
 			System.out.println();
 		}
