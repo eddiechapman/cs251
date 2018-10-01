@@ -1,9 +1,68 @@
+/********************************************************************************
+ * Movie.java
+ * Eddie Chapman
+ * 
+ * TODO: Insert description here
+ *******************************************************************************/
+
 package hw4;
 
-public class Movie {
+public class Movie 
+{
+	private String name;
+	private int minutes;
+	private int tomatoScore;
 
-	//TODO
-	//You may use your Movie class from lab, but a few small things have changed.
-	//Look at the driver and UML diagram for changes.
+	//***************************************************************************
+	
+	public Movie(String name, int minutes, int tomatoScore)
+	{
+		
+	}
+	
+	//***************************************************************************
+	
+	public String getName()
+	{
+		return name;
+	}
+	
+	public int getMinutes()
+	{
+		return minutes;
+	}
+	
+	public int getTomatoScore()
+	{
+		return tomatoScore;
+	}
+	
+	public void setTomatoScore(int Score)
+	{
+		tomatoScore = Score;
+	}
+	
+	//***************************************************************************
+	
+	public boolean isFresh()
+	{
+		return false;
+	}
+	
+	//***************************************************************************
+	
+	@Override
+	public String toString()
+	{
+		return "";
+	}
+	
+	//***************************************************************************
+	
+	@Override
+	public boolean equals(Object other)
+	{
+		return false;
+	}
 	
 }
