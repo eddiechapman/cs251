@@ -1,4 +1,4 @@
-package CS251_HW4;
+package hw4;
 
 public class Movie {
 
