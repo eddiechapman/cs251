@@ -48,9 +48,17 @@ public class MovieCollection
 	 */
 	public boolean addMovie(Movie movie)
 	{
-		// Check that movie count is less than 10 (getTotalMovies)
-		// Loop through movies array checking if candidate movie's title equals 
-		// a movie in the collection (getName, .equals, .this, .other)
+		if (movieCount > 9 || findMovie(movie) != -1)
+		{
+			return false;
+		}
+		else 
+		{
+			movies[movieCount] = movie;
+			movieCount++;
+			return true;
+		}
+		
 	}
 
 	//***************************************************************************
@@ -67,7 +75,16 @@ public class MovieCollection
 	 */
 	public boolean addMovieAt(Movie movie, int index)
 	{
-		//TODO	
+		if (index >= movies.length || findMovie(movie) != -1)
+		{
+			return false;
+		}
+		else
+		{
+			shiftCollectionRight(index);
+			addMovie(movie);
+			return true;
+		}
 	}
 	
 	//***************************************************************************
@@ -95,11 +112,18 @@ public class MovieCollection
 	 * Remember, you can use methods in Movie class to easily compare two movies now.
 	 * 
 	 * @param movie
-	 * @return boolean
+	 * @return int
 	 */
 	public int findMovie(Movie movie)
 	{
-		//TODO
+		for (int m=0; m<movieCount; m++)
+		{
+			if (movies[m].equals(movie))
+			{
+				return m;
+			}
+		}
+		return -1;
 	}
 
 	//***************************************************************************
@@ -114,7 +138,7 @@ public class MovieCollection
 	 */
 	public Movie getMovieAt(int index) 
 	{
-		//TODO
+		return movies[index];
 	}
 
 	//***************************************************************************
