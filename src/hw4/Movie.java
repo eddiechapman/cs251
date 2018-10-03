@@ -41,7 +41,7 @@ public class Movie
 	
 	public void setTomatoScore(int Score)
 	{
-		if (Score >= 0 && Score <= 100)		// tomatoScore must be between 0-100
+		if (Score >= 0 && Score <= 100)		// Score must be between 0-100
 		{
 			tomatoScore = Score;
 		}
@@ -74,10 +74,10 @@ public class Movie
 	
 	//***************************************************************************
 	
-	@Override
-	public boolean equals(Object other)
+	public boolean equals(Movie otherMovie)
 	{
-		return this.getName() == other.getName() ? true : false;
+		return false;
+			   	
 	}
 	
 }
