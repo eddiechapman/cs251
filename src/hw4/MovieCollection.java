@@ -99,7 +99,10 @@ public class MovieCollection
 	 */
 	private void shiftCollectionRight(int index) 
 	{
-		//TODO
+		for (int i=movieCount; i>index; i--)
+		{
+			movies[i] = movies[i-1];
+		}
 	}
 
 	//***************************************************************************
@@ -116,11 +119,11 @@ public class MovieCollection
 	 */
 	public int findMovie(Movie movie)
 	{
-		for (int m=0; m<movieCount; m++)
+		for (int i=0; i<movieCount; i++)
 		{
-			if (movies[m].equals(movie))
+			if (movies[i].equals(movie))
 			{
-				return m;
+				return i;
 			}
 		}
 		return -1;
@@ -138,6 +141,10 @@ public class MovieCollection
 	 */
 	public Movie getMovieAt(int index) 
 	{
+		if (index > movieCount || index < 0)
+		{
+			return null;
+		}
 		return movies[index];
 	}
 
@@ -155,7 +162,12 @@ public class MovieCollection
 	 */
 	public boolean removeMovie(Movie movie)
 	{
-		//TODO
+		if (getMovieAt(findMovie(movie)) == null)
+		{
+			return false;
+		}
+		shiftCollectionLeft(findMovie(movie));
+		return true;
 	}
 
 	//***************************************************************************
@@ -171,7 +183,15 @@ public class MovieCollection
 	 */
 	public Movie removeMovieAt(int index) 
 	{
-		//TODO
+		Movie removedMovie = movies[index];
+		
+		if (index > movieCount || index < 0)
+		{
+			return null;
+		}
+		shiftCollectionLeft(index);
+		return removedMovie;
+		
 	}
 
 	//***************************************************************************
@@ -186,7 +206,10 @@ public class MovieCollection
 	 */
 	private void shiftCollectionLeft(int index)
 	{
-		//TODO
+		for (int i=index; i<movieCount; i++)
+		{
+			movies[i] = movies[i+1];
+		}
 	}
 
 	//***************************************************************************
@@ -199,7 +222,24 @@ public class MovieCollection
 	 */
 	public Movie findBestMovie()
 	{
-		//TODO
+		Movie bestMovie = null;
+		
+		for (int i=0; i<movieCount; i++)
+		{
+			if (movies[i] == null)
+			{
+				continue;
+			}
+			if (bestMovie == null)
+			{
+				bestMovie = movies[i];
+			}
+			if (bestMovie.getTomatoScore() < movies[i].getTomatoScore())
+			{
+				bestMovie = movies[i];
+			}
+		}
+		return bestMovie;
 	}
 
 	//***************************************************************************
@@ -212,7 +252,19 @@ public class MovieCollection
 	 */
 	public void moviesToAvoid()
 	{
-		//TODO
+		int m = 1;
+		System.out.println("\nMovies to avoid:");
+		for (int i=0; i<movieCount; i++)
+		{
+			if (!movies[i].isFresh())
+			{
+				System.out.println("Movie " + m + ":");
+				System.out.println("Name: " + movies[i].getName());
+				// System.out.println("Length: " + movies[i].toString()
+				System.out.println("Tomato Rating: Rotten");
+				m++;
+			}
+		}
 	}
 
 	//***************************************************************************
@@ -225,7 +277,19 @@ public class MovieCollection
 	 */
 	public void moviesToWatch()
 	{
-		//TODO
+		int m = 1;
+		System.out.println("\nMovies to watch:");
+		for (int i=0; i<movieCount; i++)
+		{
+			if (movies[i].isFresh())
+			{
+				System.out.println("Movie " + m + ":");
+				System.out.println("Name: " + movies[i].getName());
+				// System.out.println("Length: " + movies[i].toString()
+				System.out.println("Tomato Rating: Fresh");
+				m++;
+			}
+		}
 	}
 
 	//***************************************************************************
@@ -238,7 +302,11 @@ public class MovieCollection
 	 */
 	public void printOutMovieList()
 	{
-		//TODO
+		System.out.println("\nAll of my movies:");
+		for (int i=0; i<movieCount; i++)
+		{
+			System.out.println("Movie " + (i + 1) + ": " + movies[i].getName());
+		}
 	}
 
 }
