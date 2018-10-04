@@ -52,13 +52,9 @@ public class MovieCollection
 		{
 			return false;
 		}
-		else 
-		{
-			movies[movieCount] = movie;
-			movieCount++;
-			return true;
-		}
-		
+		movies[movieCount] = movie;
+		movieCount++;
+		return true;
 	}
 
 	//***************************************************************************
@@ -141,7 +137,7 @@ public class MovieCollection
 	 */
 	public Movie getMovieAt(int index) 
 	{
-		if (index > movieCount || index < 0)
+		if (index >= movieCount || index < 0)
 		{
 			return null;
 		}
@@ -183,12 +179,11 @@ public class MovieCollection
 	 */
 	public Movie removeMovieAt(int index) 
 	{
-		Movie removedMovie = movies[index];
-		
-		if (index > movieCount || index < 0)
+		if (index >= movieCount || index < 0)
 		{
 			return null;
 		}
+		Movie removedMovie = movies[index];
 		shiftCollectionLeft(index);
 		return removedMovie;
 		
@@ -204,12 +199,20 @@ public class MovieCollection
 	 * 
 	 * @param index
 	 */
+	
 	private void shiftCollectionLeft(int index)
 	{
+
 		for (int i=index; i<movieCount; i++)
 		{
-			movies[i] = movies[i+1];
+			if (i == movieCount -1)
+			{
+				movies[index] = null;
+				break;
+			}
+			movies[i] = movies[i+1];  //TODO: What about when movie count is 10? (i+1)
 		}
+		movieCount--;
 	}
 
 	//***************************************************************************
@@ -260,7 +263,7 @@ public class MovieCollection
 			{
 				System.out.println("Movie " + m + ":");
 				System.out.println("Name: " + movies[i].getName());
-				// System.out.println("Length: " + movies[i].toString()
+				System.out.println("Length: " + movies[i].toString());
 				System.out.println("Tomato Rating: Rotten");
 				m++;
 			}
@@ -285,7 +288,7 @@ public class MovieCollection
 			{
 				System.out.println("Movie " + m + ":");
 				System.out.println("Name: " + movies[i].getName());
-				// System.out.println("Length: " + movies[i].toString()
+				System.out.println("Length: " + movies[i].toString());
 				System.out.println("Tomato Rating: Fresh");
 				m++;
 			}
