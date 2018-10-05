@@ -78,7 +78,8 @@ public class MovieCollection
 		else
 		{
 			shiftCollectionRight(index);
-			addMovie(movie);
+			movies[index] = movie;
+			movieCount++;
 			return true;
 		}
 	}
@@ -99,6 +100,7 @@ public class MovieCollection
 		{
 			movies[i] = movies[i-1];
 		}
+
 	}
 
 	//***************************************************************************
@@ -163,6 +165,7 @@ public class MovieCollection
 			return false;
 		}
 		shiftCollectionLeft(findMovie(movie));
+		movieCount--;
 		return true;
 	}
 
@@ -185,6 +188,7 @@ public class MovieCollection
 		}
 		Movie removedMovie = movies[index];
 		shiftCollectionLeft(index);
+		movieCount--;
 		return removedMovie;
 		
 	}
@@ -202,17 +206,15 @@ public class MovieCollection
 	
 	private void shiftCollectionLeft(int index)
 	{
-
 		for (int i=index; i<movieCount; i++)
 		{
-			if (i == movieCount -1)
+			if (i == movies.length - 1)
 			{
-				movies[index] = null;
+				movies[i] = null;
 				break;
 			}
-			movies[i] = movies[i+1];  //TODO: What about when movie count is 10? (i+1)
+			movies[i] = movies[i+1];
 		}
-		movieCount--;
 	}
 
 	//***************************************************************************
