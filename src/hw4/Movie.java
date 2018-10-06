@@ -51,7 +51,7 @@ public class Movie
 	
 	public boolean isFresh()
 	{
-		return 60 <= getTomatoScore() ? true : false;
+		return 60 <= getTomatoScore();
 	}
 	
 	//***************************************************************************
