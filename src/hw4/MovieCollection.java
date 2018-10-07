@@ -211,7 +211,7 @@ public class MovieCollection
 	{
 		for (int i=index; i<movieCount; i++)
 		{
-			if (i == movies.length - 1)
+			if (i == (movieCount - 1))  // Prevent index error in full array
 			{
 				movies[i] = null;
 				break;
