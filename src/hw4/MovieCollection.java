@@ -240,7 +240,7 @@ public class MovieCollection
 		System.out.println("\nAll of my movies:");
 		for (int i=0; i<movieCount; i++)
 		{
-			System.out.println("Movie" + (i + 1) + ": " + movies[i].getName());
+			System.out.println("Movie " + (i + 1) + ": " + movies[i].getName());
 		}
 	}
 } // end class MovieCollection
