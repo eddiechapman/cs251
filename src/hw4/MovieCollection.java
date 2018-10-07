@@ -197,15 +197,15 @@ public class MovieCollection
 	{
 		int badMovieCount = 0;	// Count "fresh" movies during collection iteration
 		
-		System.out.println("\nMovies to avoid:");
+		System.out.println("\nMOVIES TO AVOID");
 		for (int i=0; i<movieCount; i++)
 		{
 			if (!(movies[i].isFresh()))
 			{
 				badMovieCount++;
 				System.out.println("Movie " + badMovieCount + ":");
-				System.out.println(movies[i].toString());
-				System.out.println("Tomato Rating: Rotten");
+				System.out.println("\t" + movies[i].toString());
+				System.out.println("\t" + "Tomato Rating: Rotten");
 			}
 		}
 	} // end moviesToAvoid
@@ -218,15 +218,15 @@ public class MovieCollection
 	{
 		int goodMovieCount = 0;	// Count "rotten" movies during collection iteration
 		
-		System.out.println("\nMovies to watch:");
+		System.out.println("\nMOVIES TO WATCH");
 		for (int i=0; i<movieCount; i++)
 		{
 			if (movies[i].isFresh())
 			{
 				goodMovieCount++;
 				System.out.println("Movie " + goodMovieCount + ":");
-				System.out.println(movies[i].toString());
-				System.out.println("Tomato Rating: Fresh");
+				System.out.println("\t" + movies[i].toString());
+				System.out.println("\t" + "Tomato Rating: Fresh");
 			}
 		}
 	} // end moviesToWatch
@@ -237,7 +237,7 @@ public class MovieCollection
 
 	public void printOutMovieList()
 	{
-		System.out.println("\nAll of my movies:");
+		System.out.println("\nALL OF MY MOVIES");
 		for (int i=0; i<movieCount; i++)
 		{
 			System.out.println("Movie " + (i + 1) + ": " + movies[i].getName());
