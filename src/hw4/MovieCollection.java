@@ -52,6 +52,7 @@ public class MovieCollection
 	{
 		if (index >= movies.length ||		// Index exceeds array boundaries
 				index < 0 || 					// Index exceeds array boundaries
+				index > movieCount ||			// Index is not adjacent to movie values in array
 				movieCount > 9 || 			// No room for new movies
 				findMovie(movie) != -1)		// Movie is already in collection
 		{
