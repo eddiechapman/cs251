@@ -77,12 +77,19 @@ public class Movie
 	@Override
 	public boolean equals(Object other)
 	{
-		if (other instanceof Movie)
+		if (other == this)
 		{
-			Movie tmp = (Movie) other;
-			return tmp.name.equals(this.name) && tmp.minutes == this.minutes;
+			return true;
 		}
-	return false;   	
+		if (!(other instanceof Movie))
+		{
+			return false;
+		}
+		
+		Movie movie = (Movie) other;
+		
+		return movie.name.equals(this.name) && 
+				movie.minutes == this.minutes;
 	}
 	
 }
