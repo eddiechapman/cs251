@@ -2,7 +2,7 @@
  * Movie.java
  * Eddie Chapman
  * 
- * TODO: Insert description here
+ * This class represents an individual movie.
  *******************************************************************************/
 
 package hw4;
@@ -41,7 +41,7 @@ public class Movie
 	
 	public void setTomatoScore(int Score)
 	{
-		if (Score >= 0 && Score <= 100)		// Score must be between 0-100
+		if (Score >= 0 && Score <= 100)	// Score must be between 0-100
 		{
 			tomatoScore = Score;
 		}
@@ -49,12 +49,16 @@ public class Movie
 	
 	//***************************************************************************
 	
+	// Determine if a movie is well-reviewed based on it's tomato score
+	
 	public boolean isFresh()
 	{
 		return 60 <= getTomatoScore();
 	}
 	
 	//***************************************************************************
+	
+	// Convert an amount of minutes to a more readable string with hours and minutes
 	
 	private String minutesToHours(int minutes) 
 	{
@@ -78,6 +82,8 @@ public class Movie
 	@Override
 	public boolean equals(Object other)
 	{
+		Movie movie = null;	// Temporary movie object for comparison
+		
 		if (other == this)
 		{
 			return true;
@@ -86,11 +92,8 @@ public class Movie
 		{
 			return false;
 		}
-		
-		Movie movie = (Movie) other;
-		
+		movie = (Movie) other;
 		return movie.name.equals(this.name) && 
 				movie.minutes == this.minutes;
-	}
-	
-}
+	} // end equals
+} // end class Movie
