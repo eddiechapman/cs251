@@ -9,8 +9,8 @@ package hw4;
 
 public class MovieCollection 
 {
-	private Movie[] movies;
-	private int movieCount = 0;
+	private Movie[] movies;			// Stores the individual movies
+	private int movieCount = 0;		// Current number of movies in the collection
 
 	//***************************************************************************
 	
@@ -71,7 +71,10 @@ public class MovieCollection
 	 */
 	public boolean addMovieAt(Movie movie, int index)
 	{
-		if (index >= movies.length || findMovie(movie) != -1)
+		if (index >= movies.length ||	// Cannot add movie past boundaries of collection
+			index < 0 ||					// Cannot add movie at negative index position 
+			movieCount > 9 || 			// Movie collection is capped at 10 movies
+			findMovie(movie) != -1)		// Movie cannot already be in collection
 		{
 			return false;
 		}
