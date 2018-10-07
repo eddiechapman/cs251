@@ -281,17 +281,16 @@ public class MovieCollection
 	 */
 	public void moviesToWatch()
 	{
-		int m = 1;
+		int goodMovieCount = 1;
 		System.out.println("\nMovies to watch:");
 		for (int i=0; i<movieCount; i++)
 		{
 			if (movies[i].isFresh())
 			{
-				System.out.println("Movie " + m + ":");
-				System.out.println("Name: " + movies[i].getName());
-				System.out.println("Length: " + movies[i].toString());
+				goodMovieCount++;
+				System.out.println("Movie " + goodMovieCount + ":");
+				System.out.println(movies[i].toString());
 				System.out.println("Tomato Rating: Fresh");
-				m++;
 			}
 		}
 	}
