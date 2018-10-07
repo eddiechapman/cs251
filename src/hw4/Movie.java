@@ -73,8 +73,8 @@ public class Movie
 	@Override
 	public String toString()
 	{
-		return "Name: " + name +
-				"\nLength: " + minutesToHours(minutes);
+		return "Name: " + name + "\n\t" +
+				"Length: " + minutesToHours(minutes);
 	}
 	
 	//***************************************************************************
