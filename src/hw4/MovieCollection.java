@@ -257,17 +257,16 @@ public class MovieCollection
 	 */
 	public void moviesToAvoid()
 	{
-		int m = 1;
+		int badMovieCount = 0;
 		System.out.println("\nMovies to avoid:");
 		for (int i=0; i<movieCount; i++)
 		{
-			if (!movies[i].isFresh())
+			if (!(movies[i].isFresh()))
 			{
-				System.out.println("Movie " + m + ":");
-				System.out.println("Name: " + movies[i].getName());
-				System.out.println("Length: " + movies[i].toString());
+				badMovieCount++;
+				System.out.println("Movie " + badMovieCount + ":");
+				System.out.println(movies[i].toString());
 				System.out.println("Tomato Rating: Rotten");
-				m++;
 			}
 		}
 	}
