@@ -69,7 +69,8 @@ public class Movie
 	@Override
 	public String toString()
 	{
-		return minutesToHours(getMinutes());
+		return "Name: " + name + "\n" +
+				"Length: " + minutesToHours(minutes);
 	}
 	
 	//***************************************************************************
