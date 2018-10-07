@@ -231,18 +231,15 @@ public class MovieCollection
 	public Movie findBestMovie()
 	{
 		Movie bestMovie = null;
-		
 		for (int i=0; i<movieCount; i++)
 		{
+			
 			if (movies[i] == null)
 			{
-				continue;
+				continue;	// Skip null movies
 			}
-			if (bestMovie == null)
-			{
-				bestMovie = movies[i];
-			}
-			if (bestMovie.getTomatoScore() < movies[i].getTomatoScore())
+			else if (bestMovie == null || // Initialize bestMovie
+					bestMovie.getTomatoScore() < movies[i].getTomatoScore())
 			{
 				bestMovie = movies[i];
 			}
