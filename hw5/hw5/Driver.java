@@ -96,7 +96,18 @@ public class Driver
 	 */
 	static Pokemon makePokemon(String name, int health, int power, int level) 
 	{
-		//TODO
+		Pokemon pokemon = null;
+		
+		switch (name)
+		{
+			case "charmander":
+				return pokemon = new Charmander(health, power, level);
+			case "pikachu":
+				return pokemon = new Pikachu(health, power, level);
+			default:
+				return pokemon;
+		} // end switch
+		
 	}
 	
 	//***************************************************************************
