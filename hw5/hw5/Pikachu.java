@@ -18,7 +18,7 @@ public class Pikachu extends Pokemon {
 	
 	public Pikachu(int health, int power, int level)
 	{
-		super(health, power, level);
+		super("Pikachu", health, power, level);
 	}
 	
 	//***************************************************************************
