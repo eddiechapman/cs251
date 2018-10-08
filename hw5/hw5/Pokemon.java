@@ -25,37 +25,37 @@ public abstract class Pokemon {
 	
 	public String getName()
 	{
-		//TODO
+		return name;
 	}
 	
 	public int getHealth()
 	{
-		//TODO
+		return health;
 	}
 	
 	public void setHealth(int health)
 	{
-		//TODO
+		this.health = health;
 	}
 	
 	public int getPower()
 	{
-		//TODO
+		return power;
 	}
 	
 	public void setPower(int power)
 	{
-		//TODO
+		this.power = power;
 	}
 	
 	public int getLevel()
 	{
-		//TODO
+		return level;
 	}
 	
 	public void setLevel(int level)
 	{
-		//TODO
+		this.level = level;
 	}
 	
 	//***************************************************************************
