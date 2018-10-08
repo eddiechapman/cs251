@@ -34,7 +34,6 @@ public class Pikachu extends Pokemon {
 	@Override
 	public boolean equals(Object other)
 	{
-		//TODO
 		Pikachu pikachu = null;	// Temporary movie object for comparison
 		
 		if (other == this)
