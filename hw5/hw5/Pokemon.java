@@ -51,7 +51,10 @@ public abstract class Pokemon {
 	
 	public void setPower(int power)
 	{
-		this.power = power;
+		if (power > 0) 
+		{
+			this.power = power;
+		}
 	}
 	
 	public int getLevel()
@@ -61,7 +64,10 @@ public abstract class Pokemon {
 	
 	public void setLevel(int level)
 	{
-		this.level = level;
+		if (level > 0)
+		{
+			this.level = level;	
+		}
 	}
 	
 	//***************************************************************************
