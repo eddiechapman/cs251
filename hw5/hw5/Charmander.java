@@ -9,8 +9,8 @@ package hw5;
 
 public class Charmander extends Pokemon {
 
-	private final int fireBall = 5;
-	private final int bite = 4;
+	private final static int fireBall = 5;
+	private final static int bite = 4;
 	
 	//***************************************************************************
 	
