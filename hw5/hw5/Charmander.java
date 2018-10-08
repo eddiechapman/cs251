@@ -60,6 +60,6 @@ public class Charmander extends Pokemon {
 	@Override
 	public void physicalAttack(Pokemon target)
 	{
-		//TODO
-	} // end physicalAttack
+		target.hurt(bite);
+	}
 } // end class Pikachu
