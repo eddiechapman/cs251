@@ -14,6 +14,7 @@ public class JUnit {
 	MovieCollection d;
 	MovieCollection e;
 	MovieCollection f;
+	MovieCollection g;	// New test case for assignment
 	
 	@Before
 	public void setUp() {
@@ -23,6 +24,7 @@ public class JUnit {
 		d = new MovieCollection();
 		e = new MovieCollection();
 		f = new MovieCollection();
+		g = new MovieCollection();  
 	}
 
 	Movie crazyRichAsians = new Movie("Crazy Rich Asians",120,93);
@@ -45,6 +47,7 @@ public class JUnit {
 		d = null;
 		e = null;
 		f = null;
+		g = null;
 	}
 	
 	
@@ -236,6 +239,21 @@ public class JUnit {
 		assertEquals(5, e.getTotalMovies());
 		assertTrue(fallout.equals(e.findBestMovie()));
 
+	}
+	
+	@Test
+	public void testRemoveMovieAt()
+	{
+		g.addMovie(crazyRichAsians);
+		g.addMovie(oceans8);
+		g.addMovie(happytimeMurders);
+		g.addMovie(bigSick);
+		
+		assertEquals(null, g.removeMovieAt(4));
+		assertEquals(null, g.removeMovieAt(-3));
+		assertTrue(happytimeMurders.equals(g.removeMovieAt(2)));
+		assertEquals(null, g.removeMovieAt(g.findMovie(happytimeMurders)));
+		assertEquals(null, g.removeMovieAt(3));
 	}
 	
 
