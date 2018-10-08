@@ -40,7 +40,19 @@ public class Charmander extends Pokemon {
 	@Override
 	public void specialAttack(Pokemon target)
 	{
-		//TODO
+		if (power >= fireBall)
+		{
+			target.hurt(fireBall);
+			power -= fireBall;
+			if (power > fireBall)	
+			{
+				power = 0;			// Deplete power when remainder is insufficient for another attack
+			}
+		}
+		else if (power < fireBall) 	// Call physical attack instead when power is insufficient for fireBall
+		{
+			physicalAttack(target);
+		}	
 	} // end specialAttack
 	
 	//***************************************************************************
