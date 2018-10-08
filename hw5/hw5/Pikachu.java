@@ -40,7 +40,19 @@ public class Pikachu extends Pokemon {
 	@Override
 	public void specialAttack(Pokemon target)
 	{
-		//TODO
+		if (power >= thunderBolt)
+		{
+			target.hurt(thunderBolt);
+			power -= thunderBolt;
+			if (power > thunderBolt)	
+			{
+				power = 0;			// Deplete power when remainder is insufficient for another attack
+			}
+		}
+		else if (power < thunderBolt) 	// Call physical attack instead when power is insufficient for fireBall
+		{
+			physicalAttack(target);
+		}	
 	} // end specialAttack
 	
 	//***************************************************************************
