@@ -121,6 +121,13 @@ public class Driver
 	 */
 	protected static boolean contains(Pokemon pok, Pokemon[] arrOfPokemons) 
 	{
-		//TODO
-	}
+		for (Pokemon pokemon: arrOfPokemons)
+		{
+			if (pokemon.equals(pok))
+			{
+				return false;
+			}
+		}
+		return true;
+	} // end contains
 } // end Driver
