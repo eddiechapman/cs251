@@ -11,15 +11,15 @@ import hw4.Movie;
 
 public class Pikachu extends Pokemon {
 
-	private final int thunderBolt = 6;
-	private final int swipe = 3;
+	private final static int thunderBolt = 6;
+	private final static int swipe = 3;
 	
 	//***************************************************************************
 	
 	public Pikachu(int health, int power, int level)
 	{
-		//TODO
-	} // end Pikachu
+		super(health, power, level);
+	}
 	
 	//***************************************************************************
 	
