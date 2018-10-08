@@ -38,7 +38,10 @@ public abstract class Pokemon {
 	
 	public void setHealth(int health)
 	{
-		this.health = health;
+		if (health > 0) 
+		{
+			this.health = health;
+		}
 	}
 	
 	public int getPower()
