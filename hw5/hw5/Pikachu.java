@@ -26,7 +26,11 @@ public class Pikachu extends Pokemon {
 	@Override
 	public String toString()
 	{
-		//TODO
+		return "Type: " + this.getClass() +
+				"\nName: " + name +
+				"\nLevel: " + level +
+				"\nHealth: " + health +
+				"\nPower: " + power;
 	} // end toString
 	
 	//***************************************************************************
