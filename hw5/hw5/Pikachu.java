@@ -7,10 +7,8 @@
 
 package hw5;
 
-import hw4.Movie;
-
-public class Pikachu extends Pokemon {
-
+public class Pikachu extends Pokemon 
+{
 	private final static int thunderBolt = 6;
 	private final static int swipe = 3;
 	
