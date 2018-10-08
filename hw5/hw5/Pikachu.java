@@ -49,7 +49,7 @@ public class Pikachu extends Pokemon {
 				power = 0;			// Deplete power when remainder is insufficient for another attack
 			}
 		}
-		else if (power < thunderBolt) 	// Call physical attack instead when power is insufficient for fireBall
+		else if (power < thunderBolt) 	// Call physical attack instead when power is insufficient for thunderBolt
 		{
 			physicalAttack(target);
 		}	
