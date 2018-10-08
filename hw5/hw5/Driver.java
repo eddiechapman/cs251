@@ -17,10 +17,10 @@ public class Driver
 		Scanner stdIn = new Scanner(System.in);
 
 		Pokemon pokemon = null;
-
+		
 		for (int i = 0; i < arrOfPokemons.length; i++) 
 		{
-			System.out.println("Enter the name, health, power, and level for Pokemon #" + (i+1));
+			System.out.println("Enter the name, health, power, and level for Pokemon #" + i);
 			String[] newPokemon = stdIn.nextLine().split(" ");
 			String name = newPokemon[0];
 			int health = Integer.parseInt(newPokemon[1]);
@@ -36,7 +36,8 @@ public class Driver
 			{
 				i--;
 			}
-		}
+		} // end for loop
+		
 		System.out.println();
 		System.out.println("Pokemons before playing");
 		print(arrOfPokemons);
