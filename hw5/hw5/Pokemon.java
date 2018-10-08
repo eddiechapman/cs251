@@ -7,8 +7,8 @@
 
 package hw5;
 
-public abstract class Pokemon {
-	
+public abstract class Pokemon 
+{
 	protected String name;
 	protected int health;
 	protected int power;
