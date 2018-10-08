@@ -7,6 +7,8 @@
 
 package hw5;
 
+import hw4.Movie;
+
 public class Pikachu extends Pokemon {
 
 	private final int thunderBolt = 6;
@@ -33,6 +35,21 @@ public class Pikachu extends Pokemon {
 	public boolean equals(Object other)
 	{
 		//TODO
+		Pikachu pikachu = null;	// Temporary movie object for comparison
+		
+		if (other == this)
+		{
+			return true;
+		}
+		if (!(other instanceof Pikachu))
+		{
+			return false;
+		}
+		pikachu = (Pikachu) other;
+		return pikachu.name.equals(this.name) && 
+				pikachu.health == this.health &&
+				pikachu.level == this.level &&
+				pikachu.power == this.power;
 	} // end equals
 	
 	//***************************************************************************
