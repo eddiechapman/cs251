@@ -96,6 +96,6 @@ public abstract class Pokemon {
 	
 	public abstract void specialAttack(Pokemon target);
 	
-	public abstract void physicalAtack(Pokemon target);
+	public abstract void physicalAttack(Pokemon target);
 	
 } // end class Pokemon
