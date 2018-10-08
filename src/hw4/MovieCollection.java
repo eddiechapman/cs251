@@ -156,13 +156,12 @@ public class MovieCollection
 	{
 		for (int i=index; i<movieCount; i++)
 		{
-			// Final movie is made null rather than copied from next position
-			if (i == (movieCount - 1))
+			if (i == (movieCount - 1))  // When selecting the final movie in the array
 			{
-				movies[i] = null;
+				movies[i] = null;			// Make null directly rather than copying
 				break;
 			}
-			movies[i] = movies[i+1];
+			movies[i] = movies[i+1];	// All others are copied from next array value
 		}
 	} // end shiftCollectionLeft
 
