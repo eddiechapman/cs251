@@ -69,6 +69,14 @@ public abstract class Pokemon {
 	
 	protected void hurt(int damage)
 	{
-		//TODO
+		if (damage < 0 || !isDefeated())
+		{
+			return;
+		}
+		if (damage >= health) 
+		{
+			health = 0;
+		}
+		health = health - damage;
 	} // end hurt
 } // end class Pokemon
