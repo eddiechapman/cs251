@@ -17,7 +17,7 @@ public class Charmander extends Pokemon {
 	public Charmander(int health, int power, int level)
 	{
 		super("Charmander", health, power, level);
-	} // end constructor
+	}
 	
 	//***************************************************************************
 	
