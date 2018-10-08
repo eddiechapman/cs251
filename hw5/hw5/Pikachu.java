@@ -37,6 +37,7 @@ public class Pikachu extends Pokemon {
 	
 	//***************************************************************************
 	
+	@Override
 	public void specialAttack(Pokemon target)
 	{
 		//TODO
@@ -44,6 +45,7 @@ public class Pikachu extends Pokemon {
 	
 	//***************************************************************************
 	
+	@Override
 	public void physicalAttack(Pokemon target)
 	{
 		//TODO
