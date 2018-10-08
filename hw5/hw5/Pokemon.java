@@ -21,8 +21,8 @@ public abstract class Pokemon {
 		this.name = name;
 		this.health = health;
 		this.power = power;
-		this. level = level;
-	} // end constructor
+		this.level = level;
+	}
 	
 	//***************************************************************************
 	
