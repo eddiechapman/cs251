@@ -18,8 +18,11 @@ public abstract class Pokemon {
 	
 	public Pokemon(String name, int health, int power, int level)
 	{
-		//TODO
-	} // end Pokemon
+		this.name = name;
+		this.health = health;
+		this.power = power;
+		this. level = level;
+	} // end constructor
 	
 	//***************************************************************************
 	
