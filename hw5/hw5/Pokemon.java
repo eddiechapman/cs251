@@ -62,8 +62,8 @@ public abstract class Pokemon {
 	
 	public boolean isDefeated()
 	{
-		//TODO
-	} // end isDefeated
+		return (health > 0) ? true : false;
+	}
 	
 	//***************************************************************************
 	
