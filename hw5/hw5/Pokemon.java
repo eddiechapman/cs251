@@ -85,4 +85,11 @@ public abstract class Pokemon {
 		}
 		health = health - damage;
 	} // end hurt
+	
+	//***************************************************************************
+	
+	public abstract void specialAttack(Pokemon target);
+	
+	public abstract void physicalAtack(Pokemon target);
+	
 } // end class Pokemon
