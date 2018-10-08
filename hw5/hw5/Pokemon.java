@@ -89,7 +89,7 @@ public abstract class Pokemon {
 		{
 			health = 0;
 		}
-		health = health - damage;
+		health -= damage;
 	} // end hurt
 	
 	//***************************************************************************
