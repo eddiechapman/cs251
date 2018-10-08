@@ -60,6 +60,6 @@ public class Pikachu extends Pokemon {
 	@Override
 	public void physicalAttack(Pokemon target)
 	{
-		//TODO
-	} // end physicalAttack
+		target.hurt(swipe);
+	}
 } // end class Pikachu
