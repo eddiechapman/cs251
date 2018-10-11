@@ -15,27 +15,32 @@ public class Driver
 	{
 		Pokemon[] arrOfPokemons = new Pokemon[4];
 		Scanner stdIn = new Scanner(System.in);
-
+		
 		Pokemon pokemon = null;
 		
-		for (int i = 0; i < arrOfPokemons.length; i++) 
+		for (int i=0; i<arrOfPokemons.length; i++) 
 		{
-			System.out.println("Enter the name, health, power, and level for Pokemon #" + i);
-			String[] newPokemon = stdIn.nextLine().split(" ");
-			String name = newPokemon[0];
-			int health = Integer.parseInt(newPokemon[1]);
-			int power = Integer.parseInt(newPokemon[2]);
-			int level = Integer.parseInt(newPokemon[3]);
-			pokemon = makePokemon(name, health, power, level);
-			if (pokemon != null && 
-					!contains(pokemon, arrOfPokemons))
+			while (!contains(pokemon, arrOfPokemons))
 			{
-				arrOfPokemons[i] = pokemon;
-			}
-			else
-			{
-				i--;
-			}
+				System.out.println("Enter the name, health, power, and level for Pokemon #" + i);
+				String[] pokemon_attributes = stdIn.nextLine().split(" ");
+				
+				String name = pokemon_attributes[0];
+				int health = Integer.parseInt(pokemon_attributes[1]);
+				int power = Integer.parseInt(pokemon_attributes[2]);
+				int level = Integer.parseInt(pokemon_attributes[3]);
+				
+				pokemon = makePokemon(name, health, power, level);	
+				
+				if (pokemon != null && !contains(pokemon, arrOfPokemons))
+				{
+					arrOfPokemons[i] = pokemon;
+				}
+				else 
+				{
+					System.out.println("Sorry, something didn't work. Try again?");
+				}
+			} // end while loop
 		} // end for loop
 		
 		System.out.println();
