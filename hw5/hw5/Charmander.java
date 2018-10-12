@@ -29,7 +29,7 @@ public class Charmander extends Pokemon {
 				"\nHealth: " + health +
 				"\nPower: " + power;
 		
-	} // end toString
+	} // end toString 
 	
 	//***************************************************************************
 	
