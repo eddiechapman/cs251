@@ -36,8 +36,6 @@ public class Charmander extends Pokemon {
 	@Override
 	public boolean equals(Object other)
 	{
-		Charmander charmander = null;	// Temporary charmander object for comparison
-		
 		if (other == this)
 		{
 			return true;
@@ -46,11 +44,11 @@ public class Charmander extends Pokemon {
 		{
 			return false;
 		}
-		charmander = (Charmander) other;
-		return charmander.name.equals(this.name) && 
-				charmander.health == this.health && 
-				charmander.level == this.level &&
-				charmander.power == this.power;
+		Charmander c = (Charmander) other;
+		return c.name.equals(this.name) && 
+				c.health == this.health && 
+				c.level == this.level &&
+				c.power == this.power;
 	} // end equals
 	
 	//***************************************************************************

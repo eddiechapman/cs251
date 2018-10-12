@@ -35,8 +35,6 @@ public class Pikachu extends Pokemon
 	@Override
 	public boolean equals(Object other)
 	{
-		Pikachu pikachu = null;	// Temporary pikachu object for comparison
-		
 		if (other == this)
 		{
 			return true;
@@ -45,11 +43,11 @@ public class Pikachu extends Pokemon
 		{
 			return false;
 		}
-		pikachu = (Pikachu) other;
-		return pikachu.name.equals(this.name) && 
-				pikachu.health == this.health &&
-				pikachu.level == this.level &&
-				pikachu.power == this.power;
+		Pikachu p = (Pikachu) other;
+		return p.name.equals(this.name) && 
+				p.health == this.health &&
+				p.level == this.level &&
+				p.power == this.power;
 	} // end equals
 	
 	//***************************************************************************
