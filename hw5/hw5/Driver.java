@@ -23,12 +23,13 @@ public class Driver
 			while (!contains(pokemon, arrOfPokemons))
 			{
 				System.out.println("Enter the name, health, power, and level for Pokemon #" + i);
-				String[] pokemon_attributes = stdIn.nextLine().split(" ");
+				String pokemonInput = stdIn.nextLine();
+				String[] pokemonAttributes = pokemonInput.split(" ");
 				
-				String name = pokemon_attributes[0];
-				int health = Integer.parseInt(pokemon_attributes[1]);
-				int power = Integer.parseInt(pokemon_attributes[2]);
-				int level = Integer.parseInt(pokemon_attributes[3]);
+				String name = pokemonAttributes[0];
+				int health = Integer.parseInt(pokemonAttributes[1]);
+				int power = Integer.parseInt(pokemonAttributes[2]);
+				int level = Integer.parseInt(pokemonAttributes[3]);
 				
 				pokemon = makePokemon(name, health, power, level);	
 				
@@ -45,7 +46,7 @@ public class Driver
 		
 		System.out.println();
 		System.out.println("Pokemons before playing");
-		print(arrOfPokemons);
+		//print(arrOfPokemons);
 		System.out.println();
 		for(int i=0; i<3;i++)
 		{
@@ -53,7 +54,7 @@ public class Driver
 		}
 		System.out.println();
 		System.out.println("Pokemons After playing");
-		print(arrOfPokemons);
+		//print(arrOfPokemons);
 
 		stdIn.close();
 	} // end main
@@ -63,7 +64,7 @@ public class Driver
 	private static void print(Pokemon[] arrOfPokemons)
 	{
 		//Print the pokemons in the arrOfPokemons array 
-		for (int index = 0; index < arrOfPokemons.length; index++) 
+		for (int index=0; index<arrOfPokemons.length; index++) 
 		{
 			System.out.printf("%d: %s\n", index, arrOfPokemons[index].toString());
 		}
@@ -127,9 +128,16 @@ public class Driver
 	 */
 	protected static boolean contains(Pokemon pok, Pokemon[] arrOfPokemons) 
 	{
-		for (int i=0; i<arrOfPokemons.length; i++)
+//		for (int i=0; i<arrOfPokemons.length; i++)
+//		{
+//			if (arrOfPokemons[i] != null && arrOfPokemons[i].equals(pok))
+//			{
+//				return false;
+//			}
+//		}
+		for(Pokemon p: arrOfPokemons)
 		{
-			if (arrOfPokemons[i] != null && arrOfPokemons[i].equals(pok))
+			if (p != null && p.equals(pok))
 			{
 				return false;
 			}
