@@ -128,20 +128,13 @@ public class Driver
 	 */
 	protected static boolean contains(Pokemon pok, Pokemon[] arrOfPokemons) 
 	{
-//		for (int i=0; i<arrOfPokemons.length; i++)
-//		{
-//			if (arrOfPokemons[i] != null && arrOfPokemons[i].equals(pok))
-//			{
-//				return false;
-//			}
-//		}
 		for(Pokemon p: arrOfPokemons)
 		{
 			if (p != null && p.equals(pok))
 			{
-				return false;
+				return true;
 			}
 		}
-		return true;
+		return false;
 	}
 } // end Driver
