@@ -1,5 +1,5 @@
 /********************************************************************************
- * Charmander.java
+f * Charmander.java
  * Eddie Chapman
  * 
  * TODO: class description
@@ -24,13 +24,12 @@ public class Charmander extends Pokemon {
 	@Override
 	public String toString()
 	{
-		return "Type: " + this.getClass() +
-				"\nName: " + name +
+		return "Name: " + name +
 				"\nLevel: " + level +
 				"\nHealth: " + health +
 				"\nPower: " + power;
 		
-	} // end toString
+	} // end toStringpika
 	
 	//***************************************************************************
 	
