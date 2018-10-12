@@ -18,23 +18,23 @@ public class Driver
 		
 		for (int i=0; i<arrOfPokemons.length; i++) 
 		{
-			System.out.println("Enter the name, health, power, and level for Pokemon #" + i);
-			
-			String name = stdIn.next();
-			int health = stdIn.nextInt();
-			int power = stdIn.nextInt();
-			int level = stdIn.nextInt();
-			
-			Pokemon pokemon = makePokemon(name, health, power, level);
-			
-			if (pokemon == null || contains(pokemon, arrOfPokemons))
+			while (true)
 			{
-				System.out.println("Sorry, something didn't work. Try again?");
-				i--;
-			}
-			else 
-			{
-				arrOfPokemons[i] = pokemon;
+				System.out.println("Enter the name, health, power, and level for Pokemon #" + (i + 1));
+				
+				String name = stdIn.next();
+				int health = stdIn.nextInt();
+				int power = stdIn.nextInt();
+				int level = stdIn.nextInt();
+				
+				Pokemon pokemon = makePokemon(name, health, power, level);
+				
+				if (pokemon != null && !contains(pokemon, arrOfPokemons))
+				{
+					arrOfPokemons[i] = pokemon;
+					break;
+				}
+				System.out.println("Something didn't work. Could you try again?");
 			}
 		}
 		
