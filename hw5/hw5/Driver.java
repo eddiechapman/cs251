@@ -29,12 +29,19 @@ public class Driver
 				
 				Pokemon pokemon = makePokemon(name, health, power, level);
 				
-				if (pokemon != null && !contains(pokemon, arrOfPokemons))
+				if (pokemon == null)
+				{
+					System.out.println("I couldn't make a pokemon from those values. Try again?");
+				}
+				else if (contains(pokemon, arrOfPokemons))
+				{
+					System.out.println("Sorry, that pokemon already exists. Try a different pokemon?");
+				}
+				else
 				{
 					arrOfPokemons[i] = pokemon;
 					break;
 				}
-				System.out.println("Something didn't work. Could you try again?");
 			}
 		}
 		
