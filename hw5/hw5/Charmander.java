@@ -29,7 +29,7 @@ public class Charmander extends Pokemon {
 				"\nHealth: " + health +
 				"\nPower: " + power;
 		
-	} // end toStringpika
+	} // end toString
 	
 	//***************************************************************************
 	
@@ -58,19 +58,21 @@ public class Charmander extends Pokemon {
 	@Override
 	public void specialAttack(Pokemon target)
 	{
-		if (power >= fireBall)
-		{
-			target.hurt(fireBall);
-			power -= fireBall;
-			if (power > fireBall)	
-			{
-				power = 0;			// Deplete power when remainder is insufficient for another attack
-			}
-		}
-		else if (power < fireBall) 	// Call physical attack instead when power is insufficient for fireBall
+		// Call physical attack instead when power is insufficient for fireBall
+		if (power < fireBall) 
 		{
 			physicalAttack(target);
-		}	
+			return;
+		}
+		
+		target.hurt(fireBall);
+		power -= fireBall;
+		
+		// Deplete power when remainder is insufficient for another attack
+		if (power < fireBall) 
+		{
+			power = 0;
+		}
 	} // end specialAttack
 	
 	//***************************************************************************
