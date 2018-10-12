@@ -20,16 +20,15 @@ public class Driver
 		
 		for (int i=0; i<arrOfPokemons.length; i++) 
 		{
+			
 			while (!contains(pokemon, arrOfPokemons))
 			{
 				System.out.println("Enter the name, health, power, and level for Pokemon #" + i);
-				String pokemonInput = stdIn.nextLine();
-				String[] pokemonAttributes = pokemonInput.split(" ");
-				
-				String name = pokemonAttributes[0];
-				int health = Integer.parseInt(pokemonAttributes[1]);
-				int power = Integer.parseInt(pokemonAttributes[2]);
-				int level = Integer.parseInt(pokemonAttributes[3]);
+	
+				String name = stdIn.next();
+				int health = stdIn.nextInt();
+				int power = stdIn.nextInt();
+				int level = stdIn.nextInt();
 				
 				pokemon = makePokemon(name, health, power, level);	
 				
