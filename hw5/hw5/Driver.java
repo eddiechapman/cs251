@@ -46,7 +46,7 @@ public class Driver
 		
 		System.out.println();
 		System.out.println("Pokemons before playing");
-		//print(arrOfPokemons);
+		print(arrOfPokemons);
 		System.out.println();
 		for(int i=0; i<3;i++)
 		{
@@ -54,7 +54,7 @@ public class Driver
 		}
 		System.out.println();
 		System.out.println("Pokemons After playing");
-		//print(arrOfPokemons);
+		print(arrOfPokemons);
 
 		stdIn.close();
 	} // end main
