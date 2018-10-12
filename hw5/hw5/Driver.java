@@ -106,7 +106,7 @@ public class Driver
 	{
 		Pokemon pokemon = null;
 		
-		switch (name)
+		switch (name.toLowerCase())
 		{
 			case "charmander":
 				return pokemon = new Charmander(health, power, level);
