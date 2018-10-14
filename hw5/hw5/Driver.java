@@ -10,12 +10,14 @@ package hw5;
 import java.util.Scanner;
 
 public class Driver {
+	
 	public static void main(String[] args) {
 		
 		Pokemon[] arrOfPokemons = new Pokemon[4];
 		Scanner stdIn = new Scanner(System.in);
 		
 		for (int i=0; i<arrOfPokemons.length; i++) {
+			
 			while (true) {
 				System.out.println("Enter the name, health, power, and level for Pokemon #" + (i + 1));
 				String name = stdIn.next();
@@ -42,7 +44,7 @@ public class Driver {
 		System.out.println("Pokemons before playing");
 		print(arrOfPokemons);
 		System.out.println();
-		for(int i=0; i<3;i++) {
+		for(int i=0; i<3; i++) {
 			play(arrOfPokemons, stdIn, i);
 		}
 		System.out.println();
@@ -54,9 +56,13 @@ public class Driver {
 	
 	//***************************************************************************
 	
+	/**
+	 * Print the pokemon in the arrOfPokemons array.
+	 * 
+	 * @param arrOfPokemons		an array containing pokemon
+	 */
 	private static void print(Pokemon[] arrOfPokemons) {
-		
-		//Print the pokemons in the arrOfPokemons array 
+
 		for (int index=0; index<arrOfPokemons.length; index++) {
 			System.out.printf("%d: %s\n", index, arrOfPokemons[index].toString());
 		}
@@ -64,16 +70,26 @@ public class Driver {
 	
 	//***************************************************************************
 	
+	/**
+	 * Simulate a battle between pokemon chosen by the user.
+	 * 
+	 * @param arrOfPokemons		an array containing pokemon
+	 * @param stdIn				a scanner object for user input
+	 * @param numberOfPlay		
+	 */
 	private static void play(Pokemon[] arrOfPokemons, Scanner stdIn, int numberOfPlay) {
 		
-		int firstPokemon=0;
-		int secondPokemon=0;
+		int firstPokemon = 0;
+		int secondPokemon = 0;
 		
 		do {
-			System.out.printf("# %d Please enter the pokemons you want to play 0 to 3: ",numberOfPlay);
+			System.out.printf("# %d Please enter the pokemons you want to play 0 to 3: ", numberOfPlay);
 			firstPokemon = stdIn.nextInt();
 			secondPokemon = stdIn.nextInt();
-		} while(firstPokemon<0 ||firstPokemon>4 ||secondPokemon<0 ||secondPokemon>4 );
+		} while (firstPokemon < 0 
+				|| firstPokemon > 4 
+				|| secondPokemon < 0 
+				|| secondPokemon > 4);
 		
 		arrOfPokemons[firstPokemon].specialAttack(arrOfPokemons[secondPokemon]);
 
@@ -86,11 +102,11 @@ public class Driver {
 	/**
 	 * Creates a pokemon based on name passed to method.
 	 * 
-	 * @param name
-	 * @param health
-	 * @param power
-	 * @param level
-	 * @return Pokemon (Charmander or Pikachu)
+	 * @param name		the name of the pokemon to be created. Not case-sensitive.
+	 * @param health	the health of the pokemon to be created
+	 * @param power		the power of the pokemon to be created
+	 * @param level		the level of the pokemon to be created
+	 * @return Pokemon	either pikachu or charmander depending on user input
 	 */
 	static Pokemon makePokemon(String name, int health, int power, int level) {
 		
@@ -104,24 +120,25 @@ public class Driver {
 			default:
 				return pokemon;
 		} // end switch
-		
-	}
+	} // end makePokemon
 	
 	//***************************************************************************
 
 	/**
-	 * Tells if array contains a pokemon already.
+	 * Determines if a pokemon is already present in an array.
+	 * This method does not compare array values that are null.
 	 * 
-	 * @param pok
-	 * @param arrOfPokemons
-	 * @return boolean
+	 * @param pok				the pokemon that is or is not present in the array
+	 * @param arrOfPokemons		an array of pokemon that may contain pokemon pok
+	 * @return boolean			true if the pokemon is present, false if not.
 	 */
 	protected static boolean contains(Pokemon pok, Pokemon[] arrOfPokemons) {
-		for(Pokemon p: arrOfPokemons) {
-			if (p != null && p.equals(pok)) {
+		
+		for (Pokemon p: arrOfPokemons) {
+			if ((p != null) && p.equals(pok)) {
 				return true;
 			}
 		} // end for loop
 		return false;
-	}
+	} // end contains
 } // end Driver
