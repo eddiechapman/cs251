@@ -41,7 +41,7 @@ public abstract class Pokemon {
 	
 	public void setHealth(int health) {
 		
-		if (health > 0) {
+		if (health >= 0) {
 			this.health = health;
 		}
 		
@@ -55,7 +55,7 @@ public abstract class Pokemon {
 	
 	public void setPower(int power) {
 		
-		if (power > 0) {
+		if (power >= 0) {
 			this.power = power;
 		}
 		
@@ -69,7 +69,7 @@ public abstract class Pokemon {
 	
 	public void setLevel(int level) {
 		
-		if (level > 0) {
+		if (level >= 0) {
 			this.level = level;	
 		}
 		
