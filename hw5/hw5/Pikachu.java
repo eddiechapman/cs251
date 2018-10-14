@@ -71,6 +71,8 @@ public class Pikachu extends Pokemon {
 	/**
 	 * Deal major damage to an enemy pokemon and consume energy in the process.
 	 * 
+	 * Will have no effect if either this pokemon or the target is defeated.
+	 * 
 	 * After dealing damage, this pokemon's power is reduced by the same amount. 
 	 * If reducing this pokemon's power would result in a negative value, physical 
 	 * attack is used instead. If the remaining power is insufficient for a future 
@@ -80,6 +82,10 @@ public class Pikachu extends Pokemon {
 	 */
 	@Override
 	public void specialAttack(Pokemon target) {
+		
+		if (this.isDefeated() || target.isDefeated()) {
+			return;
+		}
 		
 		if (power < thunderBolt) {
 			physicalAttack(target);
@@ -98,14 +104,19 @@ public class Pikachu extends Pokemon {
 	//***************************************************************************
 	
 	/**
-	 * Deal damage to an enemy pokemon without consuming any power.
+	 * Deal damage to an enemy pokemon without consuming any power. 
+	 * Will have no effect if either this pokemon or the target is defeated.
 	 * 
 	 * @param target	an enemy pokemon that receives damage from the attack.
 	 */
 	@Override
 	public void physicalAttack(Pokemon target) {
 		
-		target.hurt(swipe);
+		if (this.isDefeated() || target.isDefeated()) {
+			return;
+		}
+			
+		target.hurt(swipe);	
 		
 	}
 	
