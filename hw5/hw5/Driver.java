@@ -81,28 +81,35 @@ public class Driver {
 	/**
 	 * Simulate a battle between pokemon chosen by the user.
 	 * 
+	 * Prompt the user to select an attacking pokemon and a defending pokemon. 
+	 * The attacking pokemon uses a special attack against the defending pokemon. 
+	 * The defending pokemon retaliates with a physical attack.  
+	 * 
 	 * @param arrOfPokemons		an array containing pokemon
 	 * @param stdIn				a scanner object for user input
-	 * @param numberOfPlay		
+	 * @param battleRound		the current round of battle, between 0-2. 		
 	 */
-	private static void play(Pokemon[] arrOfPokemons, Scanner stdIn, int numberOfPlay) {
+	private static void play(Pokemon[] arrOfPokemons, Scanner stdIn, int battleRound) {
 		
-		int firstPokemon = 0;
-		int secondPokemon = 0;
+		int attacker = 0;
+		int defender = 0;
 		
 		do {
-			System.out.printf("# %d Please enter the pokemons you want to play 0 to 3: ", numberOfPlay);
-			firstPokemon = stdIn.nextInt();
-			secondPokemon = stdIn.nextInt();
-		} while (firstPokemon < 0 
-				|| firstPokemon > 4 
-				|| secondPokemon < 0 
-				|| secondPokemon > 4);
+			System.out.printf("Battle round # %d : "
+					+ "\nPlease specify an attacking pokemon and defending pokemon using "
+					+ "the numbers listed above. "
+					+ "\nSeperate the numbers with a space. ", battleRound);
+			
+			attacker = stdIn.nextInt();
+			defender = stdIn.nextInt();
+			
+		} while (attacker < 0 
+				|| attacker > 4 
+				|| defender < 0 
+				|| defender > 4);
 		
-		arrOfPokemons[firstPokemon].specialAttack(arrOfPokemons[secondPokemon]);
-
-		//think of this part as a counterattack
-		arrOfPokemons[secondPokemon].physicalAttack(arrOfPokemons[firstPokemon]);
+		arrOfPokemons[attacker].specialAttack(arrOfPokemons[defender]);
+		arrOfPokemons[defender].physicalAttack(arrOfPokemons[attacker]);
 		
 	} // end Play
 	
