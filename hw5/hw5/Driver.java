@@ -2,7 +2,7 @@
  * Driver.java
  * Eddie Chapman
  * 
- * TODO: driver description
+ * Creates pokemon based on user-input and simulates a battle between them.
  *******************************************************************************/
 
 package hw5;
@@ -19,7 +19,9 @@ public class Driver {
 		for (int i=0; i<arrOfPokemons.length; i++) {
 			
 			while (true) {
+				
 				System.out.println("Enter the name, health, power, and level for Pokemon #" + (i + 1));
+				
 				String name = stdIn.next();
 				int health = stdIn.nextInt();
 				int power = stdIn.nextInt();
@@ -37,21 +39,26 @@ public class Driver {
 					arrOfPokemons[i] = pokemon;
 					break;
 				}
+				
 			} // end while
+			
 		} // end for
 		
 		System.out.println();
 		System.out.println("Pokemons before playing");
 		print(arrOfPokemons);
 		System.out.println();
+		
 		for(int i=0; i<3; i++) {
 			play(arrOfPokemons, stdIn, i);
 		}
+		
 		System.out.println();
 		System.out.println("Pokemons After playing");
 		print(arrOfPokemons);
 
 		stdIn.close();
+		
 	} // end main
 	
 	//***************************************************************************
@@ -66,6 +73,7 @@ public class Driver {
 		for (int index=0; index<arrOfPokemons.length; index++) {
 			System.out.printf("%d: %s\n", index, arrOfPokemons[index].toString());
 		}
+	
 	}
 	
 	//***************************************************************************
@@ -95,6 +103,7 @@ public class Driver {
 
 		//think of this part as a counterattack
 		arrOfPokemons[secondPokemon].physicalAttack(arrOfPokemons[firstPokemon]);
+		
 	} // end Play
 	
 	//***************************************************************************
@@ -120,6 +129,7 @@ public class Driver {
 			default:
 				return pokemon;
 		} // end switch
+		
 	} // end makePokemon
 	
 	//***************************************************************************
@@ -138,7 +148,10 @@ public class Driver {
 			if ((p != null) && p.equals(pok)) {
 				return true;
 			}
-		} // end for loop
+		}
+		
 		return false;
+		
 	} // end contains
+	
 } // end Driver

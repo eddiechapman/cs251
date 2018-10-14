@@ -17,46 +17,62 @@ public abstract class Pokemon {
 	//***************************************************************************
 	
 	public Pokemon(String name, int health, int power, int level) {
+		
 		this.name = name;
 		this.health = health;
 		this.power = power;
 		this.level = level;
+		
 	}
 	
 	//***************************************************************************
 	
 	public String getName() {
+		
 		return name;
+		
 	}
 	
 	public int getHealth() {
+		
 		return health;
+		
 	}
 	
 	public void setHealth(int health) {
+		
 		if (health > 0) {
 			this.health = health;
 		}
+		
 	}
 	
 	public int getPower() {
+		
 		return power;
+		
 	}
 	
 	public void setPower(int power) {
+		
 		if (power > 0) {
 			this.power = power;
 		}
+		
 	}
 	
 	public int getLevel() {
+		
 		return level;
+		
 	}
 	
 	public void setLevel(int level) {
+		
 		if (level > 0) {
 			this.level = level;	
 		}
+		
 	}
 	
 	//***************************************************************************
@@ -67,7 +83,9 @@ public abstract class Pokemon {
 	 * @return whether the pokemon is defeated or not defeated
 	 */
 	public boolean isDefeated() {
+		
 		return (health > 0) ? true : false;
+		
 	}
 	
 	//***************************************************************************
@@ -80,13 +98,17 @@ public abstract class Pokemon {
 	 * @param the strength of an incoming attack. Cannot be a negative value.
 	 */
 	protected void hurt(int damage) {
+		
 		if (damage < 0 || !isDefeated()) {
 			return;
 		}
+		
 		if (damage >= health) {
 			health = 0;
 		}
+		
 		health -= damage;
+		
 	} // end hurt
 	
 	//***************************************************************************

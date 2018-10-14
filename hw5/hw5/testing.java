@@ -244,6 +244,7 @@ public class testing {
 	
 	@Test
 	public void TestEquals() {
+		
 		assertEquals(true, e.equals(e));
 		assertEquals(false, e.equals(f));
 		assertEquals(false, e.equals(null));
