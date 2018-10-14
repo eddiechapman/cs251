@@ -2,14 +2,14 @@
  * Pokemon.java
  * Eddie Chapman
  * 
- * TODO: class description
+ * Abstract template shared by all Pokemon.
  *******************************************************************************/
 
 package hw5;
 
 public abstract class Pokemon {
 	
-	protected String name;
+	protected String name;	
 	protected int health;
 	protected int power;
 	protected int level;
@@ -61,12 +61,24 @@ public abstract class Pokemon {
 	
 	//***************************************************************************
 	
+	/**
+	 * Determine if a pokemon is defeated. A pokemon with 0 health is defeated.
+	 * 
+	 * @return whether the pokemon is defeated or not defeated
+	 */
 	public boolean isDefeated() {
 		return (health > 0) ? true : false;
 	}
 	
 	//***************************************************************************
 	
+	/**
+	 * Reduce the pokemon's health by the strength of an incoming attack.
+	 * Defeated pokemon cannot be damaged. If health will be reduced below 0, 
+	 * it is set to 0.
+	 * 
+	 * @param the strength of an incoming attack. Cannot be a negative value.
+	 */
 	protected void hurt(int damage) {
 		if (damage < 0 || !isDefeated()) {
 			return;
