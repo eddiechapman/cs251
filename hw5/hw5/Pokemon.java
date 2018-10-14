@@ -84,7 +84,7 @@ public abstract class Pokemon {
 	 */
 	public boolean isDefeated() {
 		
-		return (health > 0) ? true : false;
+		return (health > 0) ? false : true;
 		
 	}
 	
