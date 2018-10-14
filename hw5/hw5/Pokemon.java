@@ -99,12 +99,13 @@ public abstract class Pokemon {
 	 */
 	protected void hurt(int damage) {
 		
-		if (damage < 0 || !isDefeated()) {
+		if (damage < 0 || (isDefeated() == true)) {
 			return;
 		}
 		
 		if (damage >= health) {
 			health = 0;
+			return;
 		}
 		
 		health -= damage;
