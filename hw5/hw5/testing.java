@@ -25,9 +25,12 @@ public class testing {
 	Pokemon i;
 	Pokemon j;
 	Pokemon k;
+	
+	//***************************************************************************
 
 	@Before
 	public void setUp() {
+		
 		a = new Pikachu(-10, -10, -5);
 		b = new Charmander(-2, -5, -3);
 		c = new Pikachu(10, 50, 2);
@@ -39,10 +42,14 @@ public class testing {
 		i = new Charmander(10, 20, 5);
 		j = new Pikachu(100, 8, 10);
 		k = new Charmander(100, 7, 5);
-	}
+		
+	} // end setUp
+	
+	//***************************************************************************
 
 	@After
 	public void tearDown() {
+		
 		a = null;
 		b = null;
 		c = null;
@@ -54,7 +61,10 @@ public class testing {
 		i = null;
 		j = null;
 		k = null;
-	}
+		
+	} // end tearDown
+	
+	//***************************************************************************
 
 	@Test
 	public void TestConstructorsForPikachu() {
@@ -64,7 +74,9 @@ public class testing {
 		assertEquals(false, a instanceof Charmander);
 		assertEquals(Pikachu.class, a.getClass());
 
-	}
+	} // end TestConstructorsForPikachu
+	
+	//***************************************************************************
 
 	@Test
 	public void TestConstructorsForCharmander() {
@@ -74,7 +86,9 @@ public class testing {
 		assertEquals(false, b instanceof Pikachu);
 		assertEquals(Charmander.class, b.getClass());
 
-	}
+	} // end TestConstructorsForCharmander
+	
+	//***************************************************************************
 
 	@Test
 	public void TestInitialFields1() {
@@ -84,7 +98,9 @@ public class testing {
 		assertEquals("Pikachu", a.getName());
 		assertEquals(0, a.getPower());
 
-	}
+	} // end TestInitialFields1
+	
+	//***************************************************************************
 
 	@Test
 	public void TestInitialFields2() {
@@ -94,7 +110,9 @@ public class testing {
 		assertEquals(0, b.getLevel());
 		assertEquals("Charmander", b.getName());
 
-	}
+	} // end TestInitialFields2
+	
+	//***************************************************************************
 
 	@Test
 	public void TestInitialFields3() {
@@ -104,7 +122,9 @@ public class testing {
 		assertEquals(2, c.getLevel());
 		assertEquals("Pikachu", c.getName());
 
-	}
+	} // end TestInitialsFields3
+	
+	//***************************************************************************
 
 	@Test
 	public void TestInitialFields4() {
@@ -113,11 +133,11 @@ public class testing {
 		assertEquals(5, d.getPower());
 		assertEquals(3, d.getLevel());
 		assertEquals("Pikachu", d.getName());
-		;
-
-	}
-
+		
+	} // end TestInitialsFields4
 	
+	//***************************************************************************
+
 	@Test
 	public void TestSetters1() {
 
@@ -135,9 +155,10 @@ public class testing {
 		assertEquals(0, d.getPower());// d lost power since he attacked e
 										
 		assertEquals("Charmander", e.getName());
-		;
-
-	}
+		
+	} // end TestSetters1
+	
+	//***************************************************************************
 
 	@Test
 	public void TestSetters2() {
@@ -152,7 +173,7 @@ public class testing {
 		assertEquals(3,d.getHealth());
 		
 		f.setHealth(5);
-		assertEquals(10,f.getHealth());
+		assertEquals(5,f.getHealth());
 
 		f.specialAttack(d);
 		assertEquals(0, d.getHealth());
@@ -160,7 +181,9 @@ public class testing {
 
 		assertEquals("Pikachu", d.getName());
 
-	}
+	} // end TestSetters2
+	
+	//***************************************************************************
 
 	@Test
 	public void TestIsDefeated() {
@@ -179,8 +202,9 @@ public class testing {
 		i.specialAttack(h);
 		assertEquals(15, i.getPower());//i can not attack something that is dead, so power should remain
 		
-	}
+	} // end TestIsDefeated
 	
+	//***************************************************************************
 	
 /*	j = new Pikachu(100, 8, 10);
 	k = new Charmander(100, 7, 5);*/
@@ -214,7 +238,9 @@ public class testing {
 		assertEquals(0, j.getPower());
 		assertEquals(0, k.getPower());
 		
-	}
+	} // end TestAttacks
+	
+	//***************************************************************************
 	
 	@Test
 	public void TestEquals() {
@@ -227,7 +253,9 @@ public class testing {
 														// type BossRoadTrip
 		assertEquals(true, f.equals(g));
 
-	}
+	} // end TestEquals
+	
+	//***************************************************************************
 
 	@Test
 	public void TestMakePokemon() {
@@ -240,9 +268,11 @@ public class testing {
 
 		assertEquals(Pikachu.class, p1.getClass());
 		assertEquals(Charmander.class, p2.getClass());
-		assertEquals(true, p3==null);
-
-	}
+		assertEquals(true, p3 == null);
+		
+	} // end TestMakePokemon
+	
+	//***************************************************************************
 
 	@Test
 	public void Testexist() {
@@ -254,20 +284,22 @@ public class testing {
 		boolean arrayContainsE = Driver.contains(e, pokemons);
 		boolean arrayContainsF = Driver.contains(f, pokemons);
 
-		assertTrue(arrayContainsC);// check if the Driver.contains(c, pokemons)
-									// returned true since c is in the array
-		assertTrue(arrayContainsD);// check if the Driver.contains(d, pokemons)
-									// returned true since d is in the array
-		assertTrue(arrayContainsE);// check if the Driver.contains(e, pokemons)
-									// returned true since e is in the array
-		assertFalse(arrayContainsF);// check if the Driver.contains(f, pokemons)
-									// returned false since f is not in the
-									// array
-
-	}
+		assertTrue(arrayContainsC);		// check if the Driver.contains(c, pokemons)
+										// returned true since c is in the array
+		assertTrue(arrayContainsD);		// check if the Driver.contains(d, pokemons)
+										// returned true since d is in the array
+		assertTrue(arrayContainsE);		// check if the Driver.contains(e, pokemons)
+										// returned true since e is in the array
+		assertFalse(arrayContainsF);	// check if the Driver.contains(f, pokemons)
+										// returned false since f is not in the
+										// array
+	} // end Testexist
+	
+	//***************************************************************************
 
 	@Test
 	public void TestTostring() {
+		
 		String cPokemon = c.toString();
 		String fPokemon = f.toString();
 
@@ -291,6 +323,6 @@ public class testing {
 		assertEquals(true, fPower != -1);
 		assertEquals(true, fLevel != -1);
 
-	}
-
-}
+	} // end TestTostring
+	
+} // end testing
