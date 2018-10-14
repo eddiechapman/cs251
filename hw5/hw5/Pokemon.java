@@ -7,8 +7,8 @@
 
 package hw5;
 
-public abstract class Pokemon 
-{
+public abstract class Pokemon {
+	
 	protected String name;
 	protected int health;
 	protected int power;
@@ -16,8 +16,7 @@ public abstract class Pokemon
 	
 	//***************************************************************************
 	
-	public Pokemon(String name, int health, int power, int level)
-	{
+	public Pokemon(String name, int health, int power, int level) {
 		this.name = name;
 		this.health = health;
 		this.power = power;
@@ -26,67 +25,53 @@ public abstract class Pokemon
 	
 	//***************************************************************************
 	
-	public String getName()
-	{
+	public String getName() {
 		return name;
 	}
 	
-	public int getHealth()
-	{
+	public int getHealth() {
 		return health;
 	}
 	
-	public void setHealth(int health)
-	{
-		if (health > 0) 
-		{
+	public void setHealth(int health) {
+		if (health > 0) {
 			this.health = health;
 		}
 	}
 	
-	public int getPower()
-	{
+	public int getPower() {
 		return power;
 	}
 	
-	public void setPower(int power)
-	{
-		if (power > 0) 
-		{
+	public void setPower(int power) {
+		if (power > 0) {
 			this.power = power;
 		}
 	}
 	
-	public int getLevel()
-	{
+	public int getLevel() {
 		return level;
 	}
 	
-	public void setLevel(int level)
-	{
-		if (level > 0)
-		{
+	public void setLevel(int level) {
+		if (level > 0) {
 			this.level = level;	
 		}
 	}
 	
 	//***************************************************************************
 	
-	public boolean isDefeated()
-	{
+	public boolean isDefeated() {
 		return (health > 0) ? true : false;
 	}
 	
 	//***************************************************************************
 	
-	protected void hurt(int damage)
-	{
-		if (damage < 0 || !isDefeated())
-		{
+	protected void hurt(int damage) {
+		if (damage < 0 || !isDefeated()) {
 			return;
 		}
-		if (damage >= health) 
-		{
+		if (damage >= health) {
 			health = 0;
 		}
 		health -= damage;
