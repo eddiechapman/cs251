@@ -19,10 +19,28 @@ public abstract class Pokemon {
 	public Pokemon(String name, int health, int power, int level) {
 		
 		this.name = name;
-		this.health = health;
-		this.power = power;
-		this.level = level;
 		
+		if (health >= 0) {
+			this.health = health;
+		}
+		if (health < 0) {
+			this.health = 0;
+		}
+		
+		if (power >= 0) {
+			this.power = power;
+		}
+		if (power < 0) {
+			this.power = 0;
+		}
+		
+		if (level >= 0) {
+			this.level = level;
+		}
+		if (level < 0) {
+			this.level = 0;
+		}
+	
 	}
 	
 	//***************************************************************************
