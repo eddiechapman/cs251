@@ -30,11 +30,13 @@ public class Pikachu extends Pokemon {
 	@Override
 	public String toString() {
 		
-		return "Name: " + name
-				+ "\nLevel: " + level
-				+ "\nHealth: " + health 
-				+ "\nPower: " + power;
-		
+		return "Pikachu ["
+				+ "name=Pikachu, "
+				+ "health=" + health + ", "
+				+ "power=" + power + ", "
+				+ "level=" + level 
+				+ "]";
+
 	} // end toString
 	
 	//***************************************************************************

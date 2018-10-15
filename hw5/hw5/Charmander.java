@@ -30,12 +30,14 @@ public class Charmander extends Pokemon {
 	@Override
 	public String toString() {
 		
-		return "Name: " + name
-				+ "\nLevel: " + level
-				+ "\nHealth: " + health
-				+ "\nPower: " + power;
-		
-	} // end toString 
+		return "Charmander ["
+				+ "name=Charmander, "
+				+ "health=" + health + ", "
+				+ "power=" + power + ", "
+				+ "level=" + level 
+				+ "]";
+
+	} // end toString
 	
 	//***************************************************************************
 	
