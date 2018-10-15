@@ -85,20 +85,20 @@ public class Charmander extends Pokemon {
 		
 		if (this.isDefeated() || target.isDefeated()) {
 			return;
-		}
-		
-		if (power < fireBall) {
+		}	
+		else if (power <= 0) {
 			physicalAttack(target);
-			return;
 		}
-
-		target.hurt(fireBall);
-		power -= fireBall;
-		
-		if (power < fireBall) {
-			power = 0;
+		else if (power > 0) {
+			
+			target.hurt(fireBall);
+			power -= fireBall;
+			
+			if (power < 0) {
+				power = 0;
+			}
 		}
-		
+	
 	} // end specialAttack
 	
 	//***************************************************************************

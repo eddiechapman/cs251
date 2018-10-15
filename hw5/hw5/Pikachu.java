@@ -85,20 +85,18 @@ public class Pikachu extends Pokemon {
 		
 		if (this.isDefeated() || target.isDefeated()) {
 			return;
-		}
-		
-		if (power < thunderBolt) {
+		}	
+		else if (power <= 0) {
 			physicalAttack(target);
-			return;
 		}
-		
-		target.hurt(thunderBolt);
-		power -= thunderBolt;
-		
-		if (power < thunderBolt) {
-			power = 0;
+		else if (power > 0) {
+			target.hurt(thunderBolt);
+			power -= thunderBolt;
+			if (power < 0) {
+				power = 0;
+			}
 		}
-		
+	
 	} // end specialAttack
 	
 	//***************************************************************************
