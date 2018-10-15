@@ -69,34 +69,38 @@ public class Pikachu extends Pokemon {
 	//***************************************************************************
 	
 	/**
-	 * Deal major damage to an enemy pokemon and consume energy in the process.
+	 * Expend power to inflict damage to an enemy pokemon. 
 	 * 
-	 * Will have no effect if either this pokemon or the target is defeated.
+	 * If the pokemon has insufficient power to perform the full attack, 
+	 * the target is dealt damage equal to the pokemon's remaining power.
 	 * 
-	 * After dealing damage, this pokemon's power is reduced by the same amount. 
-	 * If reducing this pokemon's power would result in a negative value, physical 
-	 * attack is used instead. If the remaining power is insufficient for a future 
-	 * attack, power is set to 0. 
+	 * If the pokemon has no power, its physical attack is called instead.
+	 * 
+	 * If either pokemon is defeated, nothing happens.
 	 * 
 	 * @param target	an enemy pokemon that receives damage from the attack.
 	 */
 	@Override
 	public void specialAttack(Pokemon target) {
 		
-		if (this.isDefeated() || target.isDefeated()) {
-			return;
-		}	
-		else if (power <= 0) {
-			physicalAttack(target);
-		}
-		else if (power > 0) {
-			target.hurt(thunderBolt);
-			power -= thunderBolt;
-			if (power < 0) {
+		if (!this.isDefeated() && !target.isDefeated()) {
+			
+			if (power <= 0) {
+				physicalAttack(target);
+			}
+			
+			else if (power >= thunderBolt) {
+				target.hurt(thunderBolt);
+				power -= thunderBolt;
+			}
+			
+			else if (power < thunderBolt) {
+				target.hurt(power);
 				power = 0;
 			}
-		}
-	
+			
+		} // end if
+		
 	} // end specialAttack
 	
 	//***************************************************************************
