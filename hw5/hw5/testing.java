@@ -2,7 +2,7 @@
  * testing.java
  * Eddie Chapman
  * 
- * TODO: test description
+ * Tests for the Pokemon class, subclasses and driver.
  *******************************************************************************/
 
 package hw5;
@@ -137,9 +137,12 @@ public class testing {
 	} // end TestInitialsFields4
 	
 	//***************************************************************************
-
+	
 	@Test
 	public void TestSetters1() {
+		
+		// d = new Pikachu(3, 5, 3);
+		// e = new Charmander(20, 4, 6);
 
 		e.setPower(-2);
 		assertEquals(4, e.getPower());
@@ -163,6 +166,9 @@ public class testing {
 	@Test
 	public void TestSetters2() {
 		
+		// d = new Pikachu(3, 5, 3);
+		// f = new Charmander(5, 0, 1);
+		
 		d.setPower(-1);
 		assertEquals(5, d.getPower());
 
@@ -170,10 +176,10 @@ public class testing {
 		assertEquals(3, d.getLevel());
 		
 		d.setHealth(-10);
-		assertEquals(3,d.getHealth());
+		assertEquals(3, d.getHealth());
 		
 		f.setHealth(5);
-		assertEquals(5,f.getHealth());
+		assertEquals(5, f.getHealth());
 
 		f.specialAttack(d);
 		assertEquals(0, d.getHealth());
@@ -269,7 +275,7 @@ public class testing {
 
 		assertEquals(Pikachu.class, p1.getClass());
 		assertEquals(Charmander.class, p2.getClass());
-		assertEquals(true, p3 == null);
+		assertEquals(true, (p3 == null));
 		
 	} // end TestMakePokemon
 	
