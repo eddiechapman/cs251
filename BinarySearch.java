@@ -1,4 +1,6 @@
 import java.util.Scanner;
+import java.util.Arrays;
+import java.util.Random;
 
 public class BinarySearch {
 
@@ -9,7 +11,7 @@ public class BinarySearch {
 		System.out.println("Starting Program and initializiing arrays.");
 		
 		//IF your computer takes a very long time to create the arrays, you may decrease the size a little
-		int size = 100000000;
+		int size = 10;
 		
 		int[] unsortedArray = new int[size];
 		int[] sortedArray = new int[size];
@@ -55,6 +57,10 @@ public class BinarySearch {
 			
 			System.out.println();
 			
+			// For checking results of randomize method (on small arrays)
+			System.out.println("Sorted: " + Arrays.toString(sortedArray));
+			System.out.println("Unsorted: " + Arrays.toString(unsortedArray));
+			
 		}
 		
 		scr.close();
@@ -87,7 +93,18 @@ public class BinarySearch {
 	 */
 	public static void randomize(int[] array) {
 		
-		//TODO
+		Random random = new Random();
+		int n = array.length;
+		int x, y;
+		int temp;
+		
+		for (int i=0; i<n/2; i++) {
+			x = random.nextInt(n);
+			y = random.nextInt(n);
+			temp = array[x];
+			array[x] = array[y];
+			array[y] = temp;
+		}
 		
 	}
 	
@@ -102,8 +119,12 @@ public class BinarySearch {
 	 */
 	public static int linearSearch(int val, int[] array) {
 		
-		//TODO
-		
+		for (int i=0; i<array.length; i++) {
+			if (array[i] == val) {
+				return i;
+			}
+		}
+		return -1;
 	}
 	
 	/**
@@ -117,8 +138,25 @@ public class BinarySearch {
 	 */
 	public static int binarySearch(int val, int[] array) {
 		
-		//TODO
+		int low = 0;
+		int mid;
+		int high = array.length-1;
+		int midVal;
 		
+		while (low <= high) {
+			
+			mid = (low + high) / 2;
+			midVal = array[mid];
+			
+			if (val == midVal) {
+				return mid;
+			} else if (val < midVal) {
+				high = mid - 1;
+			} else {
+				low = mid + 1; 
+			}
+		}
+		return -1;
 	}
 
 }

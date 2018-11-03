@@ -45,6 +45,11 @@ public class Movie {
 		return "" + (this.minutes/60) + "hrs " + (this.minutes%60) + "min";
 	}
 	
+	
+	public int compareTitle(Movie movie) {
+		return this.getName().compareTo(movie.getName());
+	}
+	
 	@Override
 	public boolean equals(Object other){
 		if (other instanceof Movie){

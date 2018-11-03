@@ -188,13 +188,13 @@ public class MovieCollection {
 	 * 
 	 * @return Movie or null
 	 */
-	public Movie findBestMovie(){
-		if(movieCount == 0){
+	public Movie findBestMovie() {
+		if (movieCount == 0){
 			return null;
 		} else {
 			Movie favorite = movies[0];
-			for(int i = 0; i < movieCount; i++){
-				if(favorite.getTomatoScore() < movies[i].getTomatoScore()){
+			for(int i = 0; i < movieCount; i++) {
+				if (favorite.getTomatoScore() < movies[i].getTomatoScore()) {
 					favorite = movies[i];
 				}
 			}
@@ -260,11 +260,24 @@ public class MovieCollection {
 	 * You may use any method you like to compare Strings to help sort.
 	 * Use Selection Sort for this method.
 	 */
-	public void sortByName() {
-
-		//TODO
-
-	}
+	public void sortByName() 
+	{
+		int n = movieCount;
+		int min;
+		Movie temp;
+		
+		for (int i=0; i<n-1; i++) {
+			min = i;
+			for (int j=i+1; j<n; j++) {
+				if (movies[j].compareTitle(movies[min]) < 0) {
+					min = j;
+				}
+			}
+			temp = movies[min];
+			movies[min] = movies[i];
+			movies[i] = temp;
+		}
+	} // end sortByName
 
 	
 	/**
@@ -273,9 +286,17 @@ public class MovieCollection {
 	 */
 	public void sortByTomatoScore() {
 
-		//TODO
+		Movie movieToInsert;
+		int j;
 		
-	}
+		for (int i=1; i<movieCount; i++) {
+			movieToInsert = movies[i];
+			for (j=i; (j>0) && (movieToInsert.getTomatoScore()>movies[j-1].getTomatoScore()); j--) {
+				movies[j] = movies[j-1];
+			}
+			movies[j] = movieToInsert;
+		}
+	} // end sortByTomatoScore
 	
 	
 	/**
@@ -284,8 +305,17 @@ public class MovieCollection {
 	 */
 	public void sortByLength() {
 
-		//TODO
+		Movie movieToInsert;
+		int j;
 		
-	}
+		for (int i=1; i<movieCount; i++) {
+			movieToInsert = movies[i];
+			for (j=i; (j>0) && (movieToInsert.getMinutes()<movies[j-1].getMinutes()); j--) {
+				movies[j] = movies[j-1];
+			}
+			movies[j] = movieToInsert;
+		}
+		
+	} // end sortByLength
 	
 }
