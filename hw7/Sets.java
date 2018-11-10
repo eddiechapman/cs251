@@ -98,6 +98,7 @@ public class Sets {
 				intersection.add(element);
 			}
 		}
+		sort(intersection);
 		return intersection;
 	}
 	
