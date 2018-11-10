@@ -14,7 +14,9 @@ public class Sets
 	public static boolean isElement(Integer i, List<Integer> list) 
 	{
 		return list.contains(i);
-	}
+	} 
+	
+	//***************************************************************************
 	
 	/**
 	 * Check if list1 is a subset of list2.
@@ -36,7 +38,10 @@ public class Sets
 		}
 		
 		return true;
-	}
+		
+	} // end isSubset
+	
+	//***************************************************************************
 	
 	/**
 	 * Check if list1 is a super set of list2.
@@ -58,8 +63,10 @@ public class Sets
 		}
 		
 		return true;
-	}
+		
+	} // end isSuperSet
 	
+	//***************************************************************************
 	
 	/**
 	 * Perform the union of list1 and list2.
@@ -89,7 +96,10 @@ public class Sets
 		}
 		
 		return union;
-	}
+		
+	} // end union
+	
+	//***************************************************************************
 	
 	/**
 	 * Perform intersection of list1 and list2.
@@ -115,7 +125,10 @@ public class Sets
 		sort(intersection);
 		
 		return intersection;
-	}
+		
+	} // end intersection
+	
+	//***************************************************************************
 	
 	/**
 	 * Perform subtract of sets.  list1 - list2.
@@ -141,7 +154,10 @@ public class Sets
 		sort(subtract);
 		
 		return subtract;
-	}
+		
+	} // end subtract
+	
+	//***************************************************************************
 	
 	/**
 	 * Two lists are equal if all the elements in list1 occur in list2, and all elements in list2 occur in list1.
@@ -177,8 +193,10 @@ public class Sets
         }
 		
 		return true;
-	}
+		
+	} // end equals
 	
+	//***************************************************************************
 	
 	/**
 	 * Perform the cartesian product of two lists.
@@ -208,8 +226,10 @@ public class Sets
 		}
 		
 		return cartesianProduct;
-	}
+		
+	} // end cartesianProduct
 	
+	//***************************************************************************
 	
 	/**
 	 * Sort the list passed in from smallest to the largest.
@@ -233,7 +253,10 @@ public class Sets
 			
 			list.add(sortedIndex, selection);
 		}
-	}
+		
+	} // end sort
+	
+	//***************************************************************************
 	
 	/**
 	 * Find the compliment set of a list within a specified range.
@@ -256,7 +279,8 @@ public class Sets
 		}
 		
 		return compliment;
-	}
+		
+	} // end compliment
 
 	
-}
+} // end class Sets
