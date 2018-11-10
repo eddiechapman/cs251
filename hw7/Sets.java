@@ -23,7 +23,12 @@ public class Sets {
 	 * @return boolean
 	 */
 	public static boolean isSubset(List<Integer> list1, List<Integer> list2) {
-		//TODO
+		for (Integer element: list1) {
+			if (!list2.contains(element)) {
+				return false;
+			}
+		}
+		return true;
 	}
 	
 	/**
