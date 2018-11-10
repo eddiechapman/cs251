@@ -137,13 +137,25 @@ public class Sets {
 	
 	
 	/**
-	 * Sort the list passed in from smallest to the larget.
+	 * Sort the list passed in from smallest to the largest.
 	 * Notice, there is no return type, so this sorts the List in place.
 	 * 
 	 * @param list
 	 */
 	public static void sort(List<Integer> list) {
-		//TODO
+		Integer selection;
+		int sortedIndex;
+		
+		for (int unSortedIndex=1; unSortedIndex<list.size(); unSortedIndex++) 
+		{
+			selection = list.get(unSortedIndex);
+			
+			for (sortedIndex=unSortedIndex; (sortedIndex>0) && (selection<list.get(sortedIndex-1)); sortedIndex--) 
+			{
+				list.add(sortedIndex, list.get(sortedIndex-1));
+			}
+			list.add(sortedIndex, selection);
+		}
 	}
 	
 }
