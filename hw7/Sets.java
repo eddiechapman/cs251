@@ -194,7 +194,19 @@ public class Sets {
 	 */
 	public static List<String> cartesianProduct(List<Integer> list1, List<Integer> list2) 
 	{
-		//TODO
+		List<String> cartesianProduct = new ArrayList<>();
+		sort(list1);
+		sort(list2);
+		
+		for (Integer outerElement: list1) 
+		{
+			for (Integer innerElement: list2)
+			{
+				cartesianProduct.add("(" + outerElement.toString() + "," + innerElement.toString() + ")");
+			}
+		}
+		
+		return cartesianProduct;
 	}
 	
 	
