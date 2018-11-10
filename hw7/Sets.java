@@ -10,7 +10,8 @@ public class Sets {
 	 * @param list
 	 * @return booelan
 	 */
-	public static boolean isElement(Integer i, List<Integer> list) {
+	public static boolean isElement(Integer i, List<Integer> list) 
+	{
 		return list.contains(i);
 	}
 	
@@ -23,12 +24,16 @@ public class Sets {
 	 * @param list2
 	 * @return boolean
 	 */
-	public static boolean isSubset(List<Integer> list1, List<Integer> list2) {
-		for (Integer element: list1) {
-			if (!list2.contains(element)) {
+	public static boolean isSubset(List<Integer> list1, List<Integer> list2) 
+	{
+		for (Integer element: list1) 
+		{
+			if (!list2.contains(element)) 
+			{
 				return false;
 			}
 		}
+		
 		return true;
 	}
 	
@@ -41,12 +46,16 @@ public class Sets {
 	 * @param list2
 	 * @return boolean
 	 */
-	public static boolean isSuperSet(List<Integer> list1, List<Integer> list2) {
-		for (Integer element: list2) {
-			if (!list1.contains(element)) {
+	public static boolean isSuperSet(List<Integer> list1, List<Integer> list2) 
+	{
+		for (Integer element: list2) 
+		{
+			if (!list1.contains(element)) 
+			{
 				return false;
 			}
 		}
+		
 		return true;
 	}
 	
@@ -65,6 +74,7 @@ public class Sets {
 	public static List<Integer> union(List<Integer> list1, List<Integer> list2) 
 	{
 		List<Integer> union = new ArrayList<>();
+		
 		union.addAll(list1);
 		union.addAll(list2);
 		sort(union);
@@ -89,16 +99,20 @@ public class Sets {
 	 * @param list2
 	 * @return list
 	 */
-	public static List<Integer> intersection(List<Integer> list1,List<Integer> list2)
+	public static List<Integer> intersection(List<Integer> list1,List<Integer> list2) 
 	{
 		List<Integer> intersection = new ArrayList<>();
+		
 		for (Integer element: list1) 
 		{
-			if (list2.contains(element)) {
+			if (list2.contains(element)) 
+			{
 				intersection.add(element);
 			}
 		}
+		
 		sort(intersection);
+		
 		return intersection;
 	}
 	
@@ -111,8 +125,21 @@ public class Sets {
 	 * @param list2
 	 * @return
 	 */
-	public static List<Integer> subtract(List<Integer> list1, List<Integer> list2){
-		//TODO
+	public static List<Integer> subtract(List<Integer> list1, List<Integer> list2) 
+	{
+		List<Integer> subtract = new ArrayList<>();
+		
+		for (Integer element: list1) 
+		{
+			if (!list2.contains(element)) 
+			{
+				subtract.add(element);
+			}
+		}
+		
+		sort(subtract);
+		
+		return subtract;
 	}
 	
 	/**
@@ -123,7 +150,8 @@ public class Sets {
 	 * @param list2
 	 * @return boolean
 	 */
-	public static boolean equals(List<Integer> list1, List<Integer> list2) {
+	public static boolean equals(List<Integer> list1, List<Integer> list2) 
+	{
 		//TODO
 	}
 	
@@ -140,7 +168,8 @@ public class Sets {
 	 * @param list2
 	 * @return list
 	 */
-	public static List<String> cartesianProduct(List<Integer> list1, List<Integer> list2){
+	public static List<String> cartesianProduct(List<Integer> list1, List<Integer> list2) 
+	{
 		//TODO
 	}
 	
@@ -151,7 +180,8 @@ public class Sets {
 	 * 
 	 * @param list
 	 */
-	public static void sort(List<Integer> list) {
+	public static void sort(List<Integer> list) 
+	{
 		Integer selection;
 		int sortedIndex;
 		
@@ -163,6 +193,7 @@ public class Sets {
 			{
 				list.add(sortedIndex, list.get(sortedIndex-1));
 			}
+			
 			list.add(sortedIndex, selection);
 		}
 	}
