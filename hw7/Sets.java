@@ -41,7 +41,12 @@ public class Sets {
 	 * @return boolean
 	 */
 	public static boolean isSuperSet(List<Integer> list1, List<Integer> list2) {
-		//TODO
+		for (Integer element: list2) {
+			if (!list1.contains(element)) {
+				return false;
+			}
+		}
+		return true;
 	}
 	
 	
@@ -56,8 +61,23 @@ public class Sets {
 	 * @param list2
 	 * @return list
 	 */
-	public static List<Integer> union(List<Integer> list1, List<Integer> list2){
-		//TODO
+	public static List<Integer> union(List<Integer> list1, List<Integer> list2) {
+		
+		List<Integer> union = new ArrayList<>();
+		
+		for (Integer element: list1) {
+			if (!union.contains(element)) {
+				union.add(element);
+			}
+		}
+		
+		for (Integer element: list2) {
+			if (!union.contains(element)) {
+				union.add(element);
+			}
+		}
+		
+		return union;
 	}
 	
 	/**
