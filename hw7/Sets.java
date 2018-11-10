@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.List;
 
 public class Sets {
@@ -61,19 +62,18 @@ public class Sets {
 	 * @param list2
 	 * @return list
 	 */
-	public static List<Integer> union(List<Integer> list1, List<Integer> list2) {
-		
+	public static List<Integer> union(List<Integer> list1, List<Integer> list2) 
+	{
 		List<Integer> union = new ArrayList<>();
+		union.addAll(list1);
+		union.addAll(list2);
+		sort(union);
 		
-		for (Integer element: list1) {
-			if (!union.contains(element)) {
-				union.add(element);
-			}
-		}
-		
-		for (Integer element: list2) {
-			if (!union.contains(element)) {
-				union.add(element);
+		for (Integer element: union) 
+		{
+			if (union.indexOf(element) != union.lastIndexOf(element)) 
+			{
+				union.remove(element);
 			}
 		}
 		
