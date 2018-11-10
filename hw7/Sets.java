@@ -10,7 +10,7 @@ public class Sets {
 	 * @return booelan
 	 */
 	public static boolean isElement(Integer i, List<Integer> list) {
-		//TODO
+		return list.contains(i);
 	}
 	
 	/**
