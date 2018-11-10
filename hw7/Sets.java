@@ -1,8 +1,9 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class Sets {
-
+public class Sets 
+{
+	
 	/**
 	 * Check if passed in Integer is part of passed in List.
 	 * 
@@ -233,5 +234,29 @@ public class Sets {
 			list.add(sortedIndex, selection);
 		}
 	}
+	
+	/**
+	 * Find the compliment set of a list within a specified range.
+	 * 
+	 * @param list
+	 * @param lowerBound
+	 * @param uppderBound
+	 * @return
+	 */
+	public static List<Integer> compliment(List<Integer> list, int lowerBound, int upperBound)
+	{
+		List<Integer> compliment = new ArrayList<>();
+		
+		for (Integer i=lowerBound; i<=upperBound; i++)
+		{
+			if (!list.contains(i)) 
+			{
+				compliment.add(i);
+			}
+		}
+		
+		return compliment;
+	}
+
 	
 }
