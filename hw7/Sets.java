@@ -89,8 +89,16 @@ public class Sets {
 	 * @param list2
 	 * @return list
 	 */
-	public static List<Integer> intersection(List<Integer> list1,List<Integer> list2){
-		//TODO
+	public static List<Integer> intersection(List<Integer> list1,List<Integer> list2)
+	{
+		List<Integer> intersection = new ArrayList<>();
+		for (Integer element: list1) 
+		{
+			if (list2.contains(element)) {
+				intersection.add(element);
+			}
+		}
+		return intersection;
 	}
 	
 	/**
