@@ -144,16 +144,40 @@ public class Sets {
 	
 	/**
 	 * Two lists are equal if all the elements in list1 occur in list2, and all elements in list2 occur in list1.
-	 * Order does matter here.
+	 * Order does matter here. 
+	 * 
+	 * Student comment: the example in the assignment instructions seems to imply that order does not matter,
+	 * so I added a boolean flag that will accommodate both cases. 
+	 * 
 	 * 
 	 * @param list1
 	 * @param list2
+	 * @param orderMatters
 	 * @return boolean
 	 */
-	public static boolean equals(List<Integer> list1, List<Integer> list2) 
+	public static boolean equals(List<Integer> list1, List<Integer> list2, boolean orderMatters) 
 	{
-		//TODO
+		if (list1.size() != list2.size()) 
+		{
+            return false;
+		}
+		
+		if (orderMatters == true) 
+		{
+			return list1.equals(list2);
+		}
+		
+		for(Integer element: list1)
+        {
+            if (!list2.contains(element))
+            {
+                return false;
+            }
+        }
+		
+		return true;
 	}
+	
 	
 	/**
 	 * Perform the cartesian product of two lists.
