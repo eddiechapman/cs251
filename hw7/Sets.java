@@ -169,8 +169,6 @@ public class Sets
 	 * Two lists are equal if all the elements in list1 occur in list2, and all elements in list2 occur in list1.
 	 * Order does matter here. 
 	 * 
-	 * Student comment: the example in the assignment instructions seems to imply that order does not matter,
-	 * so I added a boolean flag that will accommodate both cases. 
 	 * 
 	 * 
 	 * @param list1
@@ -178,29 +176,10 @@ public class Sets
 	 * @param orderMatters
 	 * @return boolean
 	 */
-	public static boolean equals(List<Integer> list1, List<Integer> list2, boolean orderMatters) 
+	public static boolean equals(List<Integer> list1, List<Integer> list2) 
 	{
-		if (list1.size() != list2.size()) 
-		{
-            return false;
-		}
-		
-		if (orderMatters == true) 
-		{
-			return list1.equals(list2);
-		}
-		
-		for(Integer element: list1)
-        {
-            if (!list2.contains(element))
-            {
-                return false;
-            }
-        }
-		
-		return true;
-		
-	} // end equals
+		return list1.equals(list2);
+	}
 	
 	//***************************************************************************
 	
@@ -220,14 +199,21 @@ public class Sets
 	public static List<String> cartesianProduct(List<Integer> list1, List<Integer> list2) 
 	{
 		List<String> cartesianProduct = new ArrayList<>();
+		
+		if ((list1.size() == 0) || (list2.size() == 0))
+		{
+			cartesianProduct.add("");
+			return cartesianProduct;
+		}
+		
 		sort(list1);
 		sort(list2);
 		
-		for (Integer outerElement: list1) 
+		for (Integer i: list1) 
 		{
-			for (Integer innerElement: list2)
+			for (Integer j: list2)
 			{
-				cartesianProduct.add("(" + outerElement.toString() + "," + innerElement.toString() + ")");
+				cartesianProduct.add("(" + i.toString() + "," + j.toString() + ")");
 			}
 		}
 		
