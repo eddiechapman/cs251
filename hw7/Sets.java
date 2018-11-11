@@ -82,19 +82,25 @@ public class Sets
 	public static List<Integer> union(List<Integer> list1, List<Integer> list2) 
 	{
 		List<Integer> union = new ArrayList<>();
-		
-		union.addAll(list1);
-		union.addAll(list2);
-		sort(union);
-		
-		for (Integer element: union) 
+
+		for (Integer element: list1) 
 		{
-			if (union.indexOf(element) != union.lastIndexOf(element)) 
+			if (!union.contains(element))
 			{
-				union.remove(element);
+				union.add(element);
 			}
 		}
 		
+		for (Integer element: list2) 
+		{
+			if (!union.contains(element))
+			{
+				union.add(element);
+			}
+		}
+		
+		sort(union);
+
 		return union;
 		
 	} // end union
@@ -239,19 +245,25 @@ public class Sets
 	 */
 	public static void sort(List<Integer> list) 
 	{
-		Integer selection;
-		int sortedIndex;
-		
-		for (int unSortedIndex=1; unSortedIndex<list.size(); unSortedIndex++) 
+		// Move forward through the unsorted portion of the list
+		for (int i=0; i<list.size(); i++) 
 		{
-			selection = list.get(unSortedIndex);
+			// Select the first unsorted element
+			Integer selection = i;
 			
-			for (sortedIndex=unSortedIndex; (sortedIndex>0) && (selection<list.get(sortedIndex-1)); sortedIndex--) 
+			// Move backward through the sorted portion until the selection is in place
+			for (int j=i; j<list.size(); j++) 
 			{
-				list.add(sortedIndex, list.get(sortedIndex-1));
+				// ...shifting each sorted element one spot forward to make room for selection
+				if (list.get(j) < list.get(selection)) 
+				{
+                    selection = j;
+				}
 			}
+			Integer max = list.get(selection);
+            list.set(selection, list.get(i));
+            list.set(i, max);
 			
-			list.add(sortedIndex, selection);
 		}
 		
 	} // end sort
