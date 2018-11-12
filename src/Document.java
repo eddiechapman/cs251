@@ -8,8 +8,8 @@ public class Document
 	
 	public Document(int docID, String docName) 
 	{
-//		this.docID = docID;
-//		this.docName = docName;
+		this.docID = docID;
+		this.docName = docName;
 	}
 	
 	//***************************************************************************
