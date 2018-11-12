@@ -16,7 +16,7 @@ public class Document
 	
 	public String getName()
 	{
-		
+		return this.docName;
 	}
 	
 	//***************************************************************************
