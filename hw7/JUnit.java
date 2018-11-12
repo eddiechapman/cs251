@@ -300,4 +300,22 @@ public class JUnit {
 		
 	}
 	
+	public void testCompliment() {
+		
+		List<Integer> testCompliment = new ArrayList<>();
+		testCompliment.add(2);
+		testCompliment.add(4);
+		testCompliment.add(6);
+		testCompliment.add(8);
+		
+		List<Integer> complimentOutput = Sets.compliment(testCompliment, 1, 9);
+		
+		assertEquals(new Integer(3), complimentOutput.get(1));
+		assertEquals(new Integer(5), complimentOutput.get(2));
+		assertEquals(new Integer(7), complimentOutput.get(3));
+		assertFalse(complimentOutput.contains(2));
+		assertFalse(complimentOutput.contains(8));
+		
+	}
+	
 }
