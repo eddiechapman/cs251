@@ -23,7 +23,7 @@ public class Document
 	
 	public int getID()
 	{
-		
+		return this.docID;
 	}
 	
 	//***************************************************************************
