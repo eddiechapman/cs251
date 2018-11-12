@@ -169,11 +169,8 @@ public class Sets
 	 * Two lists are equal if all the elements in list1 occur in list2, and all elements in list2 occur in list1.
 	 * Order does matter here. 
 	 * 
-	 * 
-	 * 
 	 * @param list1
 	 * @param list2
-	 * @param orderMatters
 	 * @return boolean
 	 */
 	public static boolean equals(List<Integer> list1, List<Integer> list2) 
@@ -231,16 +228,11 @@ public class Sets
 	 */
 	public static void sort(List<Integer> list) 
 	{
-		// Move forward through the unsorted portion of the list
 		for (int i=0; i<list.size(); i++) 
 		{
-			// Select the first unsorted element
 			Integer selection = i;
-			
-			// Move backward through the sorted portion until the selection is in place
 			for (int j=i; j<list.size(); j++) 
 			{
-				// ...shifting each sorted element one spot forward to make room for selection
 				if (list.get(j) < list.get(selection)) 
 				{
                     selection = j;
@@ -249,7 +241,6 @@ public class Sets
 			Integer max = list.get(selection);
             list.set(selection, list.get(i));
             list.set(i, max);
-			
 		}
 		
 	} // end sort
