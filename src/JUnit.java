@@ -11,23 +11,28 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class JUnit {
-
+public class JUnit 
+{
 	Indexer r;
 	Document d1;
 	Document d2;
 	Document d3;
+	
+	//***************************************************************************
 
-	private Object getField(Object instance, String name) throws Exception {
+	private Object getField(Object instance, String name) throws Exception 
+	{
 		Class c = instance.getClass();
 		Field f = c.getDeclaredField(name);
 		f.setAccessible(true);
 		return f.get(instance);
 	}
+	
+	//***************************************************************************
 
 	@Before
-	public void setUp() {
-
+	public void setUp() 
+	{
 		d1 = new Document(1, "Test1.txt");
 		d2 = new Document(2, "Test2.txt");
 		d3 = new Document(3, "Test3.txt");
@@ -38,9 +43,10 @@ public class JUnit {
 		r.indexDocument("<Test1.txt>Testing if this works. The documents are very short for easier debugging.");
 		r.indexDocument("<Test2.txt>Adding for stuff to index, the word works should be added twice.");
 		r.indexDocument("<Test3.txt>The final string to add to see if it works! Random punctuati.on i!s added? along with works again.");
-
-	}
-
+	
+	} // end setUp
+	
+	//***************************************************************************
 
 	@After
 	public void tearDown(){
@@ -49,11 +55,13 @@ public class JUnit {
 		d2 = null;
 		d3 = null;
 	}
+	
+	//***************************************************************************
 
 	@SuppressWarnings("unchecked")
 	@Test
-	public void testAllTokens() throws Exception {
-
+	public void testAllTokens() throws Exception 
+	{
 		//Get allTokens HashMap from ReversedIndex r variable after adding several documents.
 		HashMap<String,Token> allTokensCopy = (HashMap<String, Token>) getField(r,"allTokens");
 		Token tmpToken;
@@ -91,12 +99,14 @@ public class JUnit {
 		assertFalse(allTokensCopy.containsKey("added?"));
 		assertFalse(allTokensCopy.containsKey("i!s"));
 
-	}
+	} // end testAllTokens
+	
+	//***************************************************************************
 
 	@SuppressWarnings("unchecked")
 	@Test
-	public void testAllDocs() throws Exception {
-
+	public void testAllDocs() throws Exception 
+	{
 		//Get allDocs HashMap from ReversedIndex r variable after adding several documents.
 		HashMap<String,Document> allDocsCopy = (HashMap<String, Document>) getField(r,"allDocs");
 		Document tmpDoc;
@@ -116,12 +126,14 @@ public class JUnit {
 		assertFalse(tmpDoc.equals(d1));						//Test equals method of Document class
 		assertFalse(tmpDoc.equals(d2));						//Test equals method of Document class
 
-	}
+	} // end unchecked
 
+	//***************************************************************************
+	
 	@SuppressWarnings("unchecked")
 	@Test
-	public void testReversedIndex() throws Exception {
-
+	public void testReversedIndex() throws Exception 
+	{
 		HashMap<Token,List<Document>> revIndex = (HashMap<Token,List<Document>>) getField(r,"reversedIndex");
 		HashMap<String,Token> allT = (HashMap<String, Token>) getField(r,"allTokens");
 		Token tmpToken;
@@ -158,12 +170,14 @@ public class JUnit {
 		tmpList = revIndex.get(tmpToken);
 		assertEquals(docList123,tmpList);
 
-	}
+	} // end testReversedIndex
+	
+	//***************************************************************************
 
 	@SuppressWarnings("unchecked")
 	@Test
-	public void testTokenPositions() throws Exception {
-
+	public void testTokenPositions() throws Exception
+	{
 		HashMap<String,Token> allTokensCopy = (HashMap<String, Token>) getField(r,"allTokens");
 		HashMap<String,Document> allDocsCopy = (HashMap<String, Document>) getField(r,"allDocs");
 		List<Integer> tmpList = new ArrayList<>();
@@ -201,11 +215,14 @@ public class JUnit {
 		tmpList.add(17);
 		assertEquals(tokenPositions.size(), 2);
 		assertEquals(tmpList,tokenPositions);
-	}
+	
+	} // end testTokenPositions
+	
+	//***************************************************************************
 	
 	@Test
-	public void removePunctuation() {
-		
+	public void removePunctuation()
+	{
 		Indexer ir = new Indexer();
 		String result = ir.removePunctuation("same");
 		assertTrue("same".equals(result));
@@ -228,12 +245,14 @@ public class JUnit {
 		result = ir.removePunctuation("?quest?ion");
 		assertTrue("question".equals(result));
 		
-	}
+	} // end removePunctuation
+	
+	//***************************************************************************
 	
 	@SuppressWarnings("unchecked")
 	@Test
-	public void checkToken() throws Exception {
-		
+	public void checkToken() throws Exception
+	{
 		Indexer ir = new Indexer();
 		HashMap<String,Token> allTokensCopy = (HashMap<String, Token>) getField(ir,"allTokens");
 
@@ -244,7 +263,7 @@ public class JUnit {
 		
 		Token token2 = ir.checkToken("test");					//If calling checkToken again with "test", same token should be returned
 		assertTrue(token == token2);
-		
-	}
+	
+	} // end checkToken
 
-}
+} // end class JUnit

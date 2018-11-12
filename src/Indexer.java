@@ -1,7 +1,8 @@
 //TODO
 //Import all necessary libraries.
 
-public class Indexer {
+public class Indexer 
+{
 
 	/**TODO
 	 * Create the four instance variables needed for this class
@@ -16,12 +17,14 @@ public class Indexer {
 	 * 								-Should increment with each new document created
 	 * 								-First document added will always get ID of 1
 	 */
-
-	public Indexer() {
+	public Indexer() 
+	{
 		//TODO
 		//Declare all instance variables
 		//What should each variable be initialized to?
 	}
+	
+	//***************************************************************************
 	
 	
 	/**
@@ -41,11 +44,14 @@ public class Indexer {
 	 * 
 	 * @param docString
 	 */
-	public void indexDocument(String docString) {
+	public void indexDocument(String docString) 
+	{
 
 		//TODO - indexDocument
 
-	}
+	} // end indexDocument
+	
+	//***************************************************************************
 
 	
 	/**
@@ -56,11 +62,14 @@ public class Indexer {
 	 * @param str
 	 * @return a formatted String
 	 */
-	protected String removePunctuation(String str) {
+	protected String removePunctuation(String str) 
+	{
 		
 		//TODO - removePunctuation
 		
-	}
+	} // end removePunctuation
+	
+	//***************************************************************************
 	
 	/**
 	 * Use allTokens to see if the String passed in currently is a token.
@@ -71,11 +80,14 @@ public class Indexer {
 	 * @param str
 	 * @return Token
 	 */
-	protected Token checkToken(String str) {
+	protected Token checkToken(String str) 
+	{
 
 		//TODO - checkToken
 		
-	}
+	} // end checkToken
+	
+	//***************************************************************************
 	
 	/**
 	 * Use reversedIndex to see if the Token is part of the reversedIndex.
@@ -90,12 +102,14 @@ public class Indexer {
 	 * @param doc
 	 * @return a List of Documents with the passed in Document possibly added to the List.
 	 */
-	protected List<Document> checkToken_Document(Token token, Document doc){
+	protected List<Document> checkToken_Document(Token token, Document doc)
+	{
 		
 		//TODO - checkToken
 		
-	}
+	} // end checkToken_Document
 	
+	//***************************************************************************
 	
 	/**
 	 * Use the reversedIndex to answer the query and print out the list of documents that contain the term.
@@ -108,11 +122,14 @@ public class Indexer {
 	 * 
 	 * @param query
 	 */
-	public void singleQuery(String query) {
+	public void singleQuery(String query) 
+	{
 		
 		//TODO - singleQuery
-		
-	}
+		 
+	} // end singleQuery
+	
+	//***************************************************************************
 	
 	/**
 	 * Graduate students must complete.
@@ -122,24 +139,28 @@ public class Indexer {
 	 * 
 	 * @param query
 	 */
-	public void twoWordQuery(String[] query) {
+	public void twoWordQuery(String[] query) 
+	{
 		
 		//TODO - twoWordQuery
 		//Remove the print statement when you try to complete this method.
 		System.out.println("Two word queries method not implemented yet.");
 		
 		
-	}
+	} // end twoWordQuery
+	
+	//***************************************************************************
 		
 	/**
 	 * A simple method that prints out all Documents that have been seen.
 	 * Use the list containing allDocsSorted to print them out.
 	 * 
 	 */
-	public void printOutAllDocs() {
+	public void printOutAllDocs() 
+	{
 		
 		//TODO - printOutAllDocs
 	
-	}
+	} // end printOutAllDocs
 	
-}
+} // end class Indexer

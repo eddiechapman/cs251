@@ -1,14 +1,17 @@
 //TODO
 //Import all necessary libraries.
 
-public class Token {
+public class Token 
+{
 
-	
-	public Token(String str) {
+	public Token(String str) 
+	{
 		//TODO
 		//Declare all instance variables
 		//Set the variables.
 	}
+	
+	//***************************************************************************
 	
 	/**
 	 * Get the positions of the Token for the document passed in.
@@ -17,11 +20,14 @@ public class Token {
 	 * @param doc
 	 * @return list of integers or null
 	 */
-	public List<Integer> getPositions(Document doc){
+	public List<Integer> getPositions(Document doc)
+	{
 		
 		//TODO - getPositions
 		
-	}
+	} // end getPositions
+	
+	//***************************************************************************
 
 	/**
 	 * Sets the position of the Token in the document passed in.
@@ -33,26 +39,33 @@ public class Token {
 	 * @param doc
 	 * @param p
 	 */
-	public void setPositions(Document doc, Integer p) {
+	public void setPositions(Document doc, Integer p) 
+	{
 		
 		//TODO - setPostions
 
-	}
+	} // end setPositions
+	
+	//***************************************************************************
 
 	@Override
-	public String toString() {
+	public String toString() 
+	{
 		
 		//TODO - toString
 		//toString only returns the String instance variable.
 		
-	}
+	} // end toString
+	
+	//***************************************************************************
 	
 	@Override
-	public boolean equals(Object o) {
+	public boolean equals(Object o) 
+	{
 		
 		//TODO - equals method
 		//equals only checks if the passed in Object is a Token and the String variables match.
 		
-	}
+	} // end equals
 
-}
+} // end class token

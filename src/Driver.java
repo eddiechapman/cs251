@@ -1,6 +1,7 @@
 import java.util.Scanner;
 
-public class Driver {
+public class Driver 
+{
 
 	/**
 	 * A driver that creates a Reversed Index.
@@ -9,13 +10,15 @@ public class Driver {
 	 * 
 	 * @param args
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args) 
+	{
 
 		Scanner scr = new Scanner(System.in);
 		Indexer rIndex = new Indexer();
 
 		//Add String "documents" to the Indexer
-		for(String doc: getWisconsinFacts()) {
+		for(String doc: getWisconsinFacts()) 
+		{
 			rIndex.indexDocument(doc);
 		}
 
@@ -26,31 +29,42 @@ public class Driver {
 
 		String query = "";
 		String[] qArray;
-		while(!query.equals("quit")) {
-
-			if(!query.isEmpty()) {
+		
+		while(!query.equals("quit")) 
+		{
+			if(!query.isEmpty()) 
+			{
 				qArray = query.split(" ");
+				
 				if(qArray.length == 1)
+				{
 					rIndex.singleQuery(query.toLowerCase());
-				else if(qArray.length == 2) {
+				}
+				else if(qArray.length == 2) 
+				{
 					rIndex.twoWordQuery(qArray);
-				} else {
+				} 
+				else 
+				{
 					System.out.println("\nError in query entry.\n");
 				}
-			} else {
+			} 
+			
+			else 
+			{
 				System.out.println("\nYou did not enter anything.\n");
 			}
-
+			
 			System.out.print("Please enter a query to search for or type 'quit': ");
 			query = scr.nextLine();
-
 		}
 
 		System.out.println("Goodbye");
 		scr.close();
 
-	}
-
+	} // end main
+	
+	//***************************************************************************
 
 	/**
 	 * A simple method to return an array of Strings.
@@ -60,8 +74,8 @@ public class Driver {
 	 * 
 	 * @return
 	 */
-	public static String[] getWisconsinFacts() {
-
+	public static String[] getWisconsinFacts() 
+	{
 		String[] phrases = new String[13];
 
 		//ID = 1
@@ -75,13 +89,13 @@ public class Driver {
 		//ID = 5
 		phrases[4] = "<CitizenKane.txt>The creator of what many consider the greatest movie ever made, Citizen Kane, did not hail from Hollywood. He was an export of Wisconsin. Orson Welles was born in Kenosha and went on to become an accomplished writer, producer and director. His works have appeared on Broadway, in legendary films and in the production of an infamous radio broadcast.";
 		//ID = 6
-		phrases[5] = "<Brats.txt>Most Wisconsinite’s know that the World’s Largest Brat Fest is located in Madison every Memorial Day weekend. But, not nearly as many know that Sheboygan is also known as the Bratwurst Capitol of the World. Sheboygan is where I am from and currently live. Yes, I commute from there to campus.";
+		phrases[5] = "<Brats.txt>Most Wisconsiniteï¿½s know that the Worldï¿½s Largest Brat Fest is located in Madison every Memorial Day weekend. But, not nearly as many know that Sheboygan is also known as the Bratwurst Capitol of the World. Sheboygan is where I am from and currently live. Yes, I commute from there to campus.";
 		//ID = 7
 		phrases[6] = "<HappyDays.txt>Happy Days was a famous TV show during the 1970's. Two of the stars were Ron Howard and Henry Wrinkler, aka the Fonz.";
 		//ID = 8
 		phrases[7] = "<Exports.txt>Known for her dairy production, Wisconsin actually leads the nation in exports of cranberries, whey, ginseng root and sweet corn.";
 		//ID = 9
-		phrases[8] = "<Lakes.txt>Minnesota’s official motto may be the “Land of 10,000 Lakes”, but Wisconsin is not one to brag. The lake count comes in somewhere over 15,000, but the Wisconsin DNR modestly publishes a listing of 16,692 lakes.";
+		phrases[8] = "<Lakes.txt>Minnesotaï¿½s official motto may be the ï¿½Land of 10,000 Lakesï¿½, but Wisconsin is not one to brag. The lake count comes in somewhere over 15,000, but the Wisconsin DNR modestly publishes a listing of 16,692 lakes.";
 		//ID = 10
 		phrases[9] = "<GreenBayPackers.txt>The Green Bay Packers are a professional football team in Green Bay, Wisconsin. Their home stadium is the legendary Labeau Field, where the Ice Bowl was played in 1967. The game-time temperature at Lambeau Field was about -15F (-26C), with an average wind chill around -48F (-44C). It is easy to say the Packers have some devoted fans.";
 		//When indexing, these files should be viewed as duplicates and not added to the reversed index.
@@ -94,6 +108,7 @@ public class Driver {
 		//Websites facts were obtained from.
 		//http://bobber.discoverwisconsin.com/10-facts-probably-didnt-know-wisconsin/
 		//https://www.wisconsinhistory.org/Records/Article/CS2906
-	}
+	
+	} // end getWisconsinFacts
 
-}
+} // end class Driver
