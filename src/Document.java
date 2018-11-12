@@ -39,8 +39,22 @@ public class Document
 	@Override
 	public boolean equals(Object o)
 	{
+		if (o == this) 
+		{
+			return true;
+		}
 		
-	}
+		if (!(o instanceof Document)) 
+		{
+			return false;
+		}
+		
+		Document temp = (Document) o;
+		
+		return temp.docName.equals(this.docName) 
+				&& temp.docID == this.docID;
+
+	} // end equals
 	
 	
 } // end class Document
