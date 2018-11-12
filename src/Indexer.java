@@ -1,22 +1,20 @@
+import java.util.List;
+import java.util.Map;
+
 //TODO
 //Import all necessary libraries.
 
 public class Indexer 
 {
 
-	/**TODO
-	 * Create the four instance variables needed for this class
-	 * var1)	reversedIndex 	-is a Map that maps a Token to a List of Documents
-	 * var2)	allTokens 		-is a Map that maps a String to a Token
-	 * 								-use this to determine no duplicate Tokens are created
-	 * var3)	allDocs			-is a Map that maps a string to a Document
-	 * 								-use this to determine no duplicate Documents are created
-	 * var4)	allDocsSorted	-A List that holds all Documents that are sorted by DocID
-	 * 								-If done correctly, Documents added to this variable be inserted in sorted order
-	 * var5)	assignID		-A int to assign docIDs
-	 * 								-Should increment with each new document created
-	 * 								-First document added will always get ID of 1
-	 */
+	Map<Token, List<Document>> reversedIndex;	// Maps a Token to a List of Documents
+	Map<String, Token> allTokens;				// Maps a String to a Token to avoid Token duplication
+	Map<String, Document> allDocs;				// Maps a string to a Document to avoid Document duplication
+	List<Document> allDocsSorted;				// Holds all Documents sorted by DocID
+	int assignID;								// Use for docID when creating Documents. Increments from 1.
+	
+	//***************************************************************************
+	
 	public Indexer() 
 	{
 		//TODO
