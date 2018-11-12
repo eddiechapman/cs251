@@ -1,8 +1,13 @@
+import java.util.List;
+import java.util.Map;
+
 //TODO
 //Import all necessary libraries.
 
 public class Token 
 {
+	private String token;
+	private Map<Document, List<Integer>> positionalIndex;
 
 	public Token(String str) 
 	{
