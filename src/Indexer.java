@@ -7,11 +7,11 @@ import java.util.Map;
 public class Indexer 
 {
 
-	Map<Token, List<Document>> reversedIndex;	// Maps a Token to a List of Documents
-	Map<String, Token> allTokens;				// Maps a String to a Token to avoid Token duplication
-	Map<String, Document> allDocs;				// Maps a string to a Document to avoid Document duplication
-	List<Document> allDocsSorted;				// Holds all Documents sorted by DocID
-	int assignID;								// Use for docID when creating Documents. Increments from 1.
+	private Map<Token, List<Document>> reversedIndex;	// Maps a Token to a List of Documents
+	private Map<String, Token> allTokens;				// Maps a String to a Token to avoid Token duplication
+	private Map<String, Document> allDocs;				// Maps a string to a Document to avoid Document duplication
+	private List<Document> allDocsSorted;				// Holds all Documents sorted by DocID
+	private int assignID;								// Use for docID when creating Documents. Increments from 1.
 	
 	//***************************************************************************
 	
