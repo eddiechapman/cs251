@@ -1,11 +1,13 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 //TODO
 //Import all necessary libraries.
 
-public class Indexer 
-{
+public class Indexer {
 
 	private Map<Token, List<Document>> reversedIndex;	// Maps a Token to a List of Documents
 	private Map<String, Token> allTokens;				// Maps a String to a Token to avoid Token duplication
@@ -15,11 +17,14 @@ public class Indexer
 	
 	//***************************************************************************
 	
-	public Indexer() 
-	{
-		//TODO
-		//Declare all instance variables
-		//What should each variable be initialized to?
+	public Indexer() {
+		
+		reversedIndex = new HashMap<>();
+		allDocs = new HashMap<>();
+		allDocsSorted = new ArrayList<>();
+		allTokens = new HashMap<>();
+		assignID = 1;
+		
 	}
 	
 	//***************************************************************************
@@ -42,10 +47,33 @@ public class Indexer
 	 * 
 	 * @param docString
 	 */
-	public void indexDocument(String docString) 
-	{
+	public void indexDocument(String docString) {
+		
+		// Extract document title
+		int leftAngleBracket = docString.indexOf("<");
+		int rightAngleBracket = docString.indexOf(">");
+		String docName = docString.substring((leftAngleBracket + 1), rightAngleBracket);;
+		
+		// Check if document already exists
+		if (allDocs.containsKey(docName)) {
+			return;
+		}
+		
+		// Create document and add to list
+		Document doc = new Document(assignID, docName);
+		allDocs.put(docName, doc);
+		assignID += 1;
+		
+		// Tokenize document text
+		List<String> tokens = new ArrayList<String>();
+		tokens = Arrays.asList(docString.substring(rightAngleBracket + 1));
+		
+		// Clean tokens, create token class, and add to list
+		for (String t: tokens) {
+			List<Document> docList = checkToken_Document(checkToken(removePunctuation(t)), doc);
+		}
+		
 
-		//TODO - indexDocument
 
 	} // end indexDocument
 	
@@ -60,10 +88,15 @@ public class Indexer
 	 * @param str
 	 * @return a formatted String
 	 */
-	protected String removePunctuation(String str) 
-	{
+	protected String removePunctuation(String str) {
 		
-		//TODO - removePunctuation
+		String[] punctuationArray = {",", ".", "!", "?"};
+		
+		for (String punctuation: punctuationArray) {
+			str.replaceAll(punctuation, "");
+		}
+		
+		return str.toLowerCase();
 		
 	} // end removePunctuation
 	
@@ -78,10 +111,16 @@ public class Indexer
 	 * @param str
 	 * @return Token
 	 */
-	protected Token checkToken(String str) 
-	{
-
-		//TODO - checkToken
+	protected Token checkToken(String str) {
+		
+		if (allTokens.containsKey(str)) {
+			return allTokens.get(str);
+		}
+		
+		Token token = new Token(str);
+		allTokens.put(str, token);
+		
+		return token;
 		
 	} // end checkToken
 	
@@ -100,10 +139,16 @@ public class Indexer
 	 * @param doc
 	 * @return a List of Documents with the passed in Document possibly added to the List.
 	 */
-	protected List<Document> checkToken_Document(Token token, Document doc)
-	{
+	protected List<Document> checkToken_Document(Token token, Document doc) {
 		
-		//TODO - checkToken
+		if (!reversedIndex.containsKey(token)) {
+			reversedIndex.put(token, Arrays.asList(doc));
+		}
+		else if (reversedIndex.get(token).contains(doc)) {
+			reversedIndex.get(token).add(doc);
+		}
+
+		return reversedIndex.get(token);
 		
 	} // end checkToken_Document
 	
@@ -120,8 +165,7 @@ public class Indexer
 	 * 
 	 * @param query
 	 */
-	public void singleQuery(String query) 
-	{
+	public void singleQuery(String query) {
 		
 		//TODO - singleQuery
 		 
@@ -137,8 +181,7 @@ public class Indexer
 	 * 
 	 * @param query
 	 */
-	public void twoWordQuery(String[] query) 
-	{
+	public void twoWordQuery(String[] query) {
 		
 		//TODO - twoWordQuery
 		//Remove the print statement when you try to complete this method.
@@ -154,8 +197,7 @@ public class Indexer
 	 * Use the list containing allDocsSorted to print them out.
 	 * 
 	 */
-	public void printOutAllDocs() 
-	{
+	public void printOutAllDocs() {
 		
 		//TODO - printOutAllDocs
 	
