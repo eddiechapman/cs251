@@ -74,7 +74,6 @@ public class Indexer {
 		}
 		
 
-
 	} // end indexDocument
 	
 	//***************************************************************************
@@ -93,7 +92,7 @@ public class Indexer {
 		String[] punctuationArray = {",", ".", "!", "?"};
 		
 		for (String punctuation: punctuationArray) {
-			str.replaceAll(punctuation, "");
+			str.replace(punctuation, "");
 		}
 		
 		return str.toLowerCase();
