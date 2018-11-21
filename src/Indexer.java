@@ -61,12 +61,12 @@ public class Indexer {
 		
 		// Create document and add to list
 		Document doc = new Document(assignID, docName);
-		allDocs.put(docName, doc);
 		assignID += 1;
+		allDocs.put(docName, doc);
 		
 		// Tokenize document text
 		List<String> tokens = new ArrayList<String>();
-		tokens = Arrays.asList(docString.substring(rightAngleBracket + 1));
+		tokens = Arrays.asList(docString.substring(rightAngleBracket + 1).split(" "));
 		
 		// Clean tokens, create token class, and add to list
 		for (String t: tokens) {
@@ -198,7 +198,10 @@ public class Indexer {
 	 */
 	public void printOutAllDocs() {
 		
-		//TODO - printOutAllDocs
+		for (Document doc: allDocsSorted) {
+			System.out.println(allDocsSorted.size());
+			System.out.println(String.format("DocID: -3%d, DocName: %b", doc.getID(), doc.getName()));
+		}
 	
 	} // end printOutAllDocs
 	
