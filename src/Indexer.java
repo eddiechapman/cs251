@@ -70,8 +70,16 @@ public class Indexer {
 		tokens = Arrays.asList(docString.substring(rightAngleBracket + 1).split(" "));
 		
 		// Clean tokens, create token class, and add to list
-		for (String t: tokens) {
-			Token token = checkToken(removePunctuation(t));
+//		for (String t: tokens) {
+//			Token token = checkToken(removePunctuation(t));
+//			checkToken_Document(token, doc);
+//		}
+		
+		for (int i=0; i<tokens.size(); i++) {
+			String dirtyToken = tokens.get(i);
+			String cleanToken = removePunctuation(dirtyToken);
+			Token token = checkToken(cleanToken);
+			token.setPositions(doc, i+1);
 			checkToken_Document(token, doc);
 		}
 		
