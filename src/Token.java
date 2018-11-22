@@ -46,7 +46,13 @@ public class Token {
 	 */
 	public void setPositions(Document doc, Integer p) {
 		
-		//TODO - setPostions
+		if (positionalIndex.get(doc) == null) {
+			positionalIndex.add(doc, new ArrayList<Integer>());
+		}
+		
+		if (!positionalIndex.get(doc).contains(p)) {
+			positionalIndex.get(doc).add(p);
+		}
 
 	} // end setPositions
 	
