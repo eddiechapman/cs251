@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -47,7 +48,7 @@ public class Token {
 	public void setPositions(Document doc, Integer p) {
 		
 		if (positionalIndex.get(doc) == null) {
-			positionalIndex.add(doc, new ArrayList<Integer>());
+			positionalIndex.put(doc, new ArrayList<Integer>());
 		}
 		
 		if (!positionalIndex.get(doc).contains(p)) {
