@@ -1,51 +1,52 @@
 
-public class Document 
-{
+public class Document {
+	
 	private int docID;
 	private String docName;
 	
 	//***************************************************************************
 	
-	public Document(int docID, String docName) 
-	{
+	public Document(int docID, String docName) {
+		
 		this.docID = docID;
 		this.docName = docName;
+		
 	}
 	
 	//***************************************************************************
 	
-	public String getName()
-	{
+	public String getName() {
+		
 		return this.docName;
 	}
 	
 	//***************************************************************************
 	
-	public int getID()
-	{
+	public int getID() {
+		
 		return this.docID;
+		
 	}
 	
 	//***************************************************************************
 	
 	@Override
-	public String toString()
-	{
+	public String toString() {
+		
 		return String.valueOf(this.docID);
+		
 	}
 	
 	//***************************************************************************
 	
 	@Override
-	public boolean equals(Object o)
-	{
-		if (o == this) 
-		{
+	public boolean equals(Object o) {
+		
+		if (o == this) {
 			return true;
 		}
 		
-		if (!(o instanceof Document)) 
-		{
+		if (!(o instanceof Document)) {
 			return false;
 		}
 		
