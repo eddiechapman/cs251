@@ -1,19 +1,20 @@
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-//TODO
-//Import all necessary libraries.
 
-public class Token 
-{
+public class Token {
+	
 	private String token;
 	private Map<Document, List<Integer>> positionalIndex;
 
-	public Token(String str) 
-	{
-		//TODO
-		//Declare all instance variables
-		//Set the variables.
+	//***************************************************************************
+	
+	public Token(String str) {
+		
+		token = str;
+		positionalIndex = new HashMap<>();
+		
 	}
 	
 	//***************************************************************************
@@ -25,8 +26,7 @@ public class Token
 	 * @param doc
 	 * @return list of integers or null
 	 */
-	public List<Integer> getPositions(Document doc)
-	{
+	public List<Integer> getPositions(Document doc) {
 		
 		//TODO - getPositions
 		
@@ -44,8 +44,7 @@ public class Token
 	 * @param doc
 	 * @param p
 	 */
-	public void setPositions(Document doc, Integer p) 
-	{
+	public void setPositions(Document doc, Integer p) {
 		
 		//TODO - setPostions
 
@@ -54,19 +53,16 @@ public class Token
 	//***************************************************************************
 
 	@Override
-	public String toString() 
-	{
+	public String toString() {
 		
-		//TODO - toString
-		//toString only returns the String instance variable.
+		return token;
 		
 	} // end toString
 	
 	//***************************************************************************
 	
 	@Override
-	public boolean equals(Object o) 
-	{
+	public boolean equals(Object o) {
 		
 		//TODO - equals method
 		//equals only checks if the passed in Object is a Token and the String variables match.
