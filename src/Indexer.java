@@ -52,7 +52,7 @@ public class Indexer {
 		// Extract document title
 		int leftAngleBracket = docString.indexOf("<");
 		int rightAngleBracket = docString.indexOf(">");
-		String docName = docString.substring((leftAngleBracket + 1), rightAngleBracket);;
+		String docName = docString.substring((leftAngleBracket + 1), rightAngleBracket);
 		
 		// Check if document already exists
 		if (allDocs.containsKey(docName)) {
@@ -63,6 +63,7 @@ public class Indexer {
 		Document doc = new Document(assignID, docName);
 		assignID += 1;
 		allDocs.put(docName, doc);
+		allDocsSorted.add(doc);
 		
 		// Tokenize document text
 		List<String> tokens = new ArrayList<String>();
@@ -70,7 +71,8 @@ public class Indexer {
 		
 		// Clean tokens, create token class, and add to list
 		for (String t: tokens) {
-			List<Document> docList = checkToken_Document(checkToken(removePunctuation(t)), doc);
+			Token token = checkToken(removePunctuation(t));
+			checkToken_Document(token, doc);
 		}
 		
 
@@ -89,14 +91,8 @@ public class Indexer {
 	 */
 	protected String removePunctuation(String str) {
 		
-		String[] punctuationArray = {",", ".", "!", "?"};
-		
-		for (String punctuation: punctuationArray) {
-			str.replace(punctuation, "");
-		}
-		
-		return str.toLowerCase();
-		
+		return str.replaceAll("[^a-zA-Z0-9]", "").toLowerCase();
+
 	} // end removePunctuation
 	
 	//***************************************************************************
@@ -140,10 +136,11 @@ public class Indexer {
 	 */
 	protected List<Document> checkToken_Document(Token token, Document doc) {
 		
-		if (!reversedIndex.containsKey(token)) {
-			reversedIndex.put(token, Arrays.asList(doc));
+		if (reversedIndex.get(token) == null) {
+			reversedIndex.put(token, new ArrayList<Document>());
 		}
-		else if (reversedIndex.get(token).contains(doc)) {
+		
+		if (!reversedIndex.get(token).contains(doc)) {
 			reversedIndex.get(token).add(doc);
 		}
 
@@ -199,8 +196,7 @@ public class Indexer {
 	public void printOutAllDocs() {
 		
 		for (Document doc: allDocsSorted) {
-			System.out.println(allDocsSorted.size());
-			System.out.println(String.format("DocID: -3%d, DocName: %b", doc.getID(), doc.getName()));
+			System.out.println(String.format("DocID: %d, DocName: %s", doc.getID(), doc.getName()));
 		}
 	
 	} // end printOutAllDocs
