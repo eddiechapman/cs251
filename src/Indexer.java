@@ -171,7 +171,30 @@ public class Indexer {
 	 */
 	public void singleQuery(String query) {
 		
-		//TODO - singleQuery
+		query = removePunctuation(query);
+		
+		if (!allTokens.containsKey(query)) {
+			System.out.println("Sorry, no results.");
+			return;
+		}
+		
+		Token queryToken = allTokens.get(query);
+		
+		List<Document> queryDocuments = reversedIndex.get(queryToken);
+		
+		System.out.println(String.format("Token: %s", query));
+		
+		System.out.println(String.format("Documents containing \"%s\": %s", 
+				query, queryDocuments.toString()));
+		
+		for (Document doc: queryDocuments) {
+			System.out.println(String.format("DocID: %d, DocPositions: %s", 
+					doc.getID(), queryToken.getPositions(doc).toString()));
+		}
+		
+		System.out.println();
+		
+		
 		 
 	} // end singleQuery
 	
