@@ -29,7 +29,11 @@ public class Token {
 	 */
 	public List<Integer> getPositions(Document doc) {
 		
-		//TODO - getPositions
+		if (!positionalIndex.containsKey(doc)) {
+			return null;
+		}
+		
+		return positionalIndex.get(doc);
 		
 	} // end getPositions
 	
@@ -83,7 +87,7 @@ public class Token {
 		
 		Token temp = (Token) o;
 		
-		return temp.token.equals(this.token);
+		return temp.toString().equals(this.toString());
 
 	} // end equals
 
