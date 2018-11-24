@@ -75,8 +75,6 @@ public class Token {
 	@Override
 	public boolean equals(Object o) {
 		
-		//TODO - equals method
-		//equals only checks if the passed in Object is a Token and the String variables match.
 		if (o == this) {
 			return true;
 		}
