@@ -73,7 +73,18 @@ public class Token {
 		
 		//TODO - equals method
 		//equals only checks if the passed in Object is a Token and the String variables match.
+		if (o == this) {
+			return true;
+		}
 		
+		if (!(o instanceof Token)) {
+			return false;
+		}
+		
+		Token temp = (Token) o;
+		
+		return temp.token.equals(this.token);
+
 	} // end equals
 
 } // end class token
