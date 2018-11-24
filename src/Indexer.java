@@ -99,7 +99,7 @@ public class Indexer {
 	 */
 	protected String removePunctuation(String str) {
 		
-		return str.replaceAll("[^a-zA-Z0-9]", "").toLowerCase();
+		return str.replaceAll("[\\,\\.\\!\\?]", "").toLowerCase().trim();
 
 	} // end removePunctuation
 	
