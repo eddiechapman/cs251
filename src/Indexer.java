@@ -1,12 +1,9 @@
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-//TODO
-//Import all necessary libraries.
 
 public class Indexer {
 
@@ -208,52 +205,43 @@ public class Indexer {
 	 */
 	public void twoWordQuery(String[] query) {
 		
-		String queryWord1 = removePunctuation(query[0]);
-		String queryWord2 = removePunctuation(query[1]);
+		String word1 = removePunctuation(query[0]); 
+		String word2 = removePunctuation(query[1]);
 		
-		if (!(allTokens.containsKey(queryWord1) 
-				&& allTokens.containsKey(queryWord2))) {
+		// Exit if either query word does not appear in a document.
+		if (!(allTokens.containsKey(word1) && allTokens.containsKey(word2))) {
 			System.out.println("Sorry, no results.");
 			return;
 		}
+	
+		// Find pairs of adjacent query word positions for each document
+		HashMap<Integer, List<List<Integer>>> docPositions = new HashMap<>();  	
 		
-		Token tokenQueryWord1 = allTokens.get(queryWord1);
-		Token tokenQueryWord2 = allTokens.get(queryWord2);
-		
-		List<Document> docsQueryWord1 = reversedIndex.get(tokenQueryWord1);
-		List<Document> docsQueryWord2 = reversedIndex.get(tokenQueryWord2);
-		
-		List<Document> docsFullQuery = intersection(docsQueryWord1, docsQueryWord2);
-		
-		HashMap<Integer, List<List<Integer>>> queryPositionsPairs = new HashMap<>();
-		
-		for (Document doc: docsFullQuery) {
-			Integer docID = doc.getID();
-			List<Integer> positionsQueryWord1 = tokenQueryWord1.getPositions(doc);
-			List<Integer> positionsQueryWord2 = tokenQueryWord2.getPositions(doc);
-			queryPositionsPairs.put(docID, cartesianProduct(positionsQueryWord1, positionsQueryWord2));
-		}
-		
-		HashMap<Integer, List<List<Integer>>> queryPositionsCleaned = new HashMap<>();
-		
-		for (Integer docID: queryPositionsPairs.keySet()) {
-			if (queryPositionsPairs.get(docID).size() > 0) {
-				queryPositionsCleaned.put(docID, queryPositionsPairs.get(docID));
+		for (Document doc: docsIntersection(word1, word2)) {
+			
+			// Cartesian product drops non-consecutive position pairs.
+			List<List<Integer>> positions  = cartesianProduct(word1, word2, doc);
+			
+			// Save document and positions as long as query words appear consecutively.
+			if (positions.size() > 0) {
+				docPositions.put(doc.getID(), positions);
 			}
-		}
+			
+		} // end for
 		
 		System.out.println("\n==================================================");
-		System.out.println(String.format("Tokens: %s %s", queryWord1, queryWord2));
+		System.out.println(String.format("Tokens: %s %s", word1, word2));
 		System.out.println("--------------------------------------------------");
 		System.out.println(String.format("Documents containing \"%s %s\": %s", 
-				queryWord1, queryWord2, queryPositionsCleaned.keySet().toString()));
+				word1, word2, docPositions.keySet().toString()));
 		System.out.println("--------------------------------------------------");
-		for (Integer docID: queryPositionsCleaned.keySet()) {
+		
+		for (Integer docID: docPositions.keySet()) {
 			
 			System.out.print("DocID: " + docID.toString() + "\t");
 			System.out.print("DocPositions: ");
 			
-			for (List<Integer> position: queryPositionsCleaned.get(docID)) {
+			for (List<Integer> position: docPositions.get(docID)) {
 				System.out.print(position.get(0).toString() + "-" + position.get(1).toString() + "; ");
 			}
 			
@@ -268,20 +256,20 @@ public class Indexer {
 	//***************************************************************************
 	
 	/**
-	 * Perform intersection of list1 and list2.
-	 * Intersection means to only include an element if it is in both Lists.
-	 * This method will return a new interesected List.
+	 * Find the intersection between lists of documents containing either query term. 
 	 * 
-	 * @param list1
-	 * @param list2
-	 * @return list
+	 * @param word1		The first query word. Punctuation, whitespace, and caps removed.
+	 * @param word2		The second query word. Punctuation, whitespace, and caps removed.
+	 * @return list		A list of documents that contain both query words. 
 	 */
-	public static List<Document> intersection(List<Document> list1,List<Document> list2) {
+	private List<Document> docsIntersection(String word1, String word2) {
 		
 		List<Document> intersection = new ArrayList<>();
-		
-		for (Document document: list1) {
-			if (list2.contains(document)) {
+		List<Document> docs1 = reversedIndex.get(allTokens.get(word1));
+		List<Document> docs2 = reversedIndex.get(allTokens.get(word2));
+
+		for (Document document: docs1) {
+			if (docs2.contains(document)) {
 				intersection.add(document);
 			}
 		}
@@ -305,23 +293,25 @@ public class Indexer {
 	 * @param list2
 	 * @return list
 	 */
-	public static List<List<Integer>> cartesianProduct(List<Integer> list1, List<Integer> list2) {
+	private List<List<Integer>> cartesianProduct(String word1, String word2, Document doc) {
 		
-		List<List<Integer>> cartesianProduct = new ArrayList<>();
+		List<Integer> positions1 = allTokens.get(word1).getPositions(doc); 
+		List<Integer> positions2 = allTokens.get(word2).getPositions(doc);
+		List<List<Integer>> positionPairs = new ArrayList<>();
 		
-		if ((list1.size() == 0) || (list2.size() == 0)) {
-			return cartesianProduct;
+		if ((positions1.size() == 0) || (positions2.size() == 0)) {
+			return positionPairs;
 		}
 		
-		for (Integer i: list1) {
-			for (Integer j: list2) {
-				if (j - i == 1) {
-					cartesianProduct.add(Arrays.asList(i, j));
+		for (Integer pos1: positions1) {
+			for (Integer pos2: positions2) {
+				if (pos2 - pos1 == 1) {
+					positionPairs.add(Arrays.asList(pos1, pos2));
 				}
 			}
 		}
 		
-		return cartesianProduct;
+		return positionPairs;
 		
 	} // end cartesianProduct
 	
@@ -335,7 +325,7 @@ public class Indexer {
 	public void printOutAllDocs() {
 		
 		for (Document doc: allDocsSorted) {
-			System.out.println(String.format("DocID: %d, DocName: %s", doc.getID(), doc.getName()));
+			System.out.println(String.format("DocID: %d \tDocName: %s", doc.getID(), doc.getName()));
 		}
 	
 	} // end printOutAllDocs
