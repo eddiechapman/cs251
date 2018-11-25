@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -183,7 +184,6 @@ public class Indexer {
 		List<Document> queryDocuments = reversedIndex.get(queryToken);
 		
 		System.out.println(String.format("Token: %s", query));
-		
 		System.out.println(String.format("Documents containing \"%s\": %s", 
 				query, queryDocuments.toString()));
 		
@@ -193,8 +193,6 @@ public class Indexer {
 		}
 		
 		System.out.println();
-		
-		
 		 
 	} // end singleQuery
 	
@@ -210,15 +208,125 @@ public class Indexer {
 	 */
 	public void twoWordQuery(String[] query) {
 		
-		//TODO - twoWordQuery
-		//Remove the print statement when you try to complete this method.
-		System.out.println("Two word queries method not implemented yet.");
+		String queryWord1 = removePunctuation(query[0]);
+		String queryWord2 = removePunctuation(query[1]);
 		
+		if (!(allTokens.containsKey(queryWord1) 
+				&& allTokens.containsKey(queryWord2))) {
+			System.out.println("Sorry, no results.");
+			return;
+		}
 		
+		Token tokenQueryWord1 = allTokens.get(queryWord1);
+		Token tokenQueryWord2 = allTokens.get(queryWord2);
+		
+		List<Document> docsQueryWord1 = reversedIndex.get(tokenQueryWord1);
+		List<Document> docsQueryWord2 = reversedIndex.get(tokenQueryWord2);
+		
+		List<Document> docsFullQuery = intersection(docsQueryWord1, docsQueryWord2);
+		
+		HashMap<Integer, List<List<Integer>>> queryPositionsPairs = new HashMap<>();
+		
+		for (Document doc: docsFullQuery) {
+			Integer docID = doc.getID();
+			List<Integer> positionsQueryWord1 = tokenQueryWord1.getPositions(doc);
+			List<Integer> positionsQueryWord2 = tokenQueryWord2.getPositions(doc);
+			queryPositionsPairs.put(docID, cartesianProduct(positionsQueryWord1, positionsQueryWord2));
+		}
+		
+		HashMap<Integer, List<List<Integer>>> queryPositionsCleaned = new HashMap<>();
+		
+		for (Integer docID: queryPositionsPairs.keySet()) {
+			if (queryPositionsPairs.get(docID).size() > 0) {
+				queryPositionsCleaned.put(docID, queryPositionsPairs.get(docID));
+			}
+		}
+		
+		System.out.println("\n==================================================");
+		System.out.println(String.format("Tokens: %s %s", queryWord1, queryWord2));
+		System.out.println("--------------------------------------------------");
+		System.out.println(String.format("Documents containing \"%s %s\": %s", 
+				queryWord1, queryWord2, queryPositionsCleaned.keySet().toString()));
+		System.out.println("--------------------------------------------------");
+		for (Integer docID: queryPositionsCleaned.keySet()) {
+			
+			System.out.print("DocID: " + docID.toString() + "\t");
+			System.out.print("DocPositions: ");
+			
+			for (List<Integer> position: queryPositionsCleaned.get(docID)) {
+				System.out.print(position.get(0).toString() + "-" + position.get(1).toString() + "; ");
+			}
+			
+			System.out.println();
+		}
+		System.out.println("==================================================");
+		System.out.println();
+			
+
 	} // end twoWordQuery
 	
 	//***************************************************************************
+	
+	/**
+	 * Perform intersection of list1 and list2.
+	 * Intersection means to only include an element if it is in both Lists.
+	 * This method will return a new interesected List.
+	 * 
+	 * @param list1
+	 * @param list2
+	 * @return list
+	 */
+	public static List<Document> intersection(List<Document> list1,List<Document> list2) {
 		
+		List<Document> intersection = new ArrayList<>();
+		
+		for (Document document: list1) {
+			if (list2.contains(document)) {
+				intersection.add(document);
+			}
+		}
+	
+		return intersection;
+			
+	} // end intersection
+	
+	//***************************************************************************
+	
+	/**
+	 * Perform the cartesian product of two lists.
+	 * This method will store the result as a List that holds strings since Java does not allow Tuples.
+	 * Both lists must be sorted before performing the cartesian product.
+	 * Elements in list1 should be the first element in each product.
+	 * If the either list is empty, return a empty List.
+	 * 
+	 * See handout for example.
+	 * 
+	 * @param list1
+	 * @param list2
+	 * @return list
+	 */
+	public static List<List<Integer>> cartesianProduct(List<Integer> list1, List<Integer> list2) {
+		
+		List<List<Integer>> cartesianProduct = new ArrayList<>();
+		
+		if ((list1.size() == 0) || (list2.size() == 0)) {
+			return cartesianProduct;
+		}
+		
+		for (Integer i: list1) {
+			for (Integer j: list2) {
+				if (j - i == 1) {
+					cartesianProduct.add(Arrays.asList(i, j));
+				}
+			}
+		}
+		
+		return cartesianProduct;
+		
+	} // end cartesianProduct
+	
+	//***************************************************************************
+	
 	/**
 	 * A simple method that prints out all Documents that have been seen.
 	 * Use the list containing allDocsSorted to print them out.
