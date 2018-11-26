@@ -13,6 +13,10 @@ public class Indexer {
 	private List<Document> allDocsSorted;				// Holds all Documents sorted by DocID
 	private int assignID;								// Use for docID when creating Documents. Increments from 1.
 	
+	// Used for printing to console
+	private String thickLine = "==================================================";	
+	private String thinLine = "--------------------------------------------------";
+	
 	//***************************************************************************
 	
 	public Indexer() {
@@ -68,11 +72,6 @@ public class Indexer {
 		tokens = Arrays.asList(docString.substring(rightAngleBracket + 1).split(" "));
 		
 		// Clean tokens, create token class, and add to list
-//		for (String t: tokens) {
-//			Token token = checkToken(removePunctuation(t));
-//			checkToken_Document(token, doc);
-//		}
-		
 		for (int i=0; i<tokens.size(); i++) {
 			String dirtyToken = tokens.get(i);
 			String cleanToken = removePunctuation(dirtyToken);
@@ -180,15 +179,26 @@ public class Indexer {
 		
 		List<Document> queryDocuments = reversedIndex.get(queryToken);
 		
+		System.out.println();
+		System.out.println(thickLine);
+		
 		System.out.println(String.format("Token: %s", query));
+		
+		System.out.println(thinLine);
+		
 		System.out.println(String.format("Documents containing \"%s\": %s", 
-				query, queryDocuments.toString()));
+				query, 
+				queryDocuments.toString()));
+		
+		System.out.println(thinLine);
 		
 		for (Document doc: queryDocuments) {
-			System.out.println(String.format("DocID: %d, DocPositions: %s", 
-					doc.getID(), queryToken.getPositions(doc).toString()));
+			System.out.println(String.format("DocID: %d\t DocPositions: %s", 
+					doc.getID(), 
+					queryToken.getPositions(doc).toString()));
 		}
 		
+		System.out.println(thickLine);
 		System.out.println();
 		 
 	} // end singleQuery
@@ -213,9 +223,9 @@ public class Indexer {
 			System.out.println("Sorry, no results.");
 			return;
 		}
-	
+		
 		// Find pairs of adjacent query word positions for each document
-		HashMap<Integer, List<List<Integer>>> docPositions = new HashMap<>();  	
+		HashMap<Integer, List<List<Integer>>> docPositions = new HashMap<>();
 		
 		for (Document doc: docsIntersection(word1, word2)) {
 			
@@ -229,25 +239,43 @@ public class Indexer {
 			
 		} // end for
 		
-		System.out.println("\n==================================================");
+		// Exit if query words appear in document but not in consecutive positions
+		if (docPositions.size() == 0) {
+			System.out.println("Sorry, no results.");
+			return;
+		}
+		
+		
+		
+		System.out.println();
+		System.out.println(thickLine);
+		
 		System.out.println(String.format("Tokens: %s %s", word1, word2));
-		System.out.println("--------------------------------------------------");
+		
+		System.out.println(thinLine);
+		
 		System.out.println(String.format("Documents containing \"%s %s\": %s", 
-				word1, word2, docPositions.keySet().toString()));
-		System.out.println("--------------------------------------------------");
+				word1, 
+				word2, 
+				docPositions.keySet().toString()));
+		
+		System.out.println(thinLine);
 		
 		for (Integer docID: docPositions.keySet()) {
 			
-			System.out.print("DocID: " + docID.toString() + "\t");
+			System.out.print(String.format("DocID: %s\t", docID.toString()));
 			System.out.print("DocPositions: ");
 			
 			for (List<Integer> position: docPositions.get(docID)) {
-				System.out.print(position.get(0).toString() + "-" + position.get(1).toString() + "; ");
+				System.out.print(String.format("[%s-%s]; ", 
+						position.get(0).toString(), 
+						position.get(1).toString()));
 			}
 			
 			System.out.println();
 		}
-		System.out.println("==================================================");
+		
+		System.out.println(thickLine);
 		System.out.println();
 			
 
@@ -276,7 +304,7 @@ public class Indexer {
 	
 		return intersection;
 			
-	} // end intersection
+	} // end docsIntersection
 	
 	//***************************************************************************
 	
