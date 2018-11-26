@@ -141,10 +141,12 @@ public class Indexer {
 	 */
 	protected List<Document> checkToken_Document(Token token, Document doc) {
 		
+		// Add token mapped to empty list if token is not already present.
 		if (reversedIndex.get(token) == null) {
 			reversedIndex.put(token, new ArrayList<Document>());
 		}
 		
+		// Add document to list mapped to token if not already present.
 		if (!reversedIndex.get(token).contains(doc)) {
 			reversedIndex.get(token).add(doc);
 		}
@@ -168,16 +170,17 @@ public class Indexer {
 	 */
 	public void singleQuery(String query) {
 		
-		query = removePunctuation(query);
+		String word = removePunctuation(query);
 		
-		if (!allTokens.containsKey(query)) {
+		// Exit if query word does not appear in a document.
+		if (!allTokens.containsKey(word)) {
 			System.out.println("Sorry, no results.");
 			return;
 		}
 		
-		Token queryToken = allTokens.get(query);
+		Token token = allTokens.get(word);
 		
-		List<Document> queryDocuments = reversedIndex.get(queryToken);
+		List<Document> documents = reversedIndex.get(token);
 		
 		System.out.println();
 		System.out.println(thickLine);
@@ -187,15 +190,15 @@ public class Indexer {
 		System.out.println(thinLine);
 		
 		System.out.println(String.format("Documents containing \"%s\": %s", 
-				query, 
-				queryDocuments.toString()));
+				word, 
+				documents.toString()));
 		
 		System.out.println(thinLine);
 		
-		for (Document doc: queryDocuments) {
+		for (Document doc: documents) {
 			System.out.println(String.format("DocID: %d\t DocPositions: %s", 
 					doc.getID(), 
-					queryToken.getPositions(doc).toString()));
+					token.getPositions(doc).toString()));
 		}
 		
 		System.out.println(thickLine);
@@ -353,7 +356,9 @@ public class Indexer {
 	public void printOutAllDocs() {
 		
 		for (Document doc: allDocsSorted) {
-			System.out.println(String.format("DocID: %d \tDocName: %s", doc.getID(), doc.getName()));
+			System.out.println(String.format("DocID: %d \tDocName: %s", 
+					doc.getID(), 
+					doc.getName()));
 		}
 	
 	} // end printOutAllDocs
