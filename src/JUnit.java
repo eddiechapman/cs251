@@ -11,8 +11,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class JUnit 
-{
+public class JUnit {
 	Indexer r;
 	Document d1;
 	Document d2;
@@ -20,8 +19,8 @@ public class JUnit
 	
 	//***************************************************************************
 
-	private Object getField(Object instance, String name) throws Exception 
-	{
+	private Object getField(Object instance, String name) throws Exception {
+		
 		Class c = instance.getClass();
 		Field f = c.getDeclaredField(name);
 		f.setAccessible(true);
@@ -31,8 +30,8 @@ public class JUnit
 	//***************************************************************************
 
 	@Before
-	public void setUp() 
-	{
+	public void setUp() {
+		
 		d1 = new Document(1, "Test1.txt");
 		d2 = new Document(2, "Test2.txt");
 		d3 = new Document(3, "Test3.txt");
@@ -49,7 +48,7 @@ public class JUnit
 	//***************************************************************************
 
 	@After
-	public void tearDown(){
+	public void tearDown() {
 		r = null;
 		d1 = null;
 		d2 = null;
@@ -60,8 +59,8 @@ public class JUnit
 
 	@SuppressWarnings("unchecked")
 	@Test
-	public void testAllTokens() throws Exception 
-	{
+	public void testAllTokens() throws Exception {
+		
 		//Get allTokens HashMap from ReversedIndex r variable after adding several documents.
 		HashMap<String,Token> allTokensCopy = (HashMap<String, Token>) getField(r,"allTokens");
 		Token tmpToken;
@@ -105,8 +104,8 @@ public class JUnit
 
 	@SuppressWarnings("unchecked")
 	@Test
-	public void testAllDocs() throws Exception 
-	{
+	public void testAllDocs() throws Exception {
+		
 		//Get allDocs HashMap from ReversedIndex r variable after adding several documents.
 		HashMap<String,Document> allDocsCopy = (HashMap<String, Document>) getField(r,"allDocs");
 		Document tmpDoc;
@@ -132,8 +131,8 @@ public class JUnit
 	
 	@SuppressWarnings("unchecked")
 	@Test
-	public void testReversedIndex() throws Exception 
-	{
+	public void testReversedIndex() throws Exception {
+		
 		HashMap<Token,List<Document>> revIndex = (HashMap<Token,List<Document>>) getField(r,"reversedIndex");
 		HashMap<String,Token> allT = (HashMap<String, Token>) getField(r,"allTokens");
 		Token tmpToken;
@@ -176,8 +175,8 @@ public class JUnit
 
 	@SuppressWarnings("unchecked")
 	@Test
-	public void testTokenPositions() throws Exception
-	{
+	public void testTokenPositions() throws Exception {
+		
 		HashMap<String,Token> allTokensCopy = (HashMap<String, Token>) getField(r,"allTokens");
 		HashMap<String,Document> allDocsCopy = (HashMap<String, Document>) getField(r,"allDocs");
 		List<Integer> tmpList = new ArrayList<>();
@@ -221,8 +220,8 @@ public class JUnit
 	//***************************************************************************
 	
 	@Test
-	public void removePunctuation()
-	{
+	public void removePunctuation() {
+		
 		Indexer ir = new Indexer();
 		String result = ir.removePunctuation("same");
 		assertTrue("same".equals(result));
@@ -251,8 +250,8 @@ public class JUnit
 	
 	@SuppressWarnings("unchecked")
 	@Test
-	public void checkToken() throws Exception
-	{
+	public void checkToken() throws Exception {
+		
 		Indexer ir = new Indexer();
 		HashMap<String,Token> allTokensCopy = (HashMap<String, Token>) getField(ir,"allTokens");
 
