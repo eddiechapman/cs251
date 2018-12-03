@@ -2,9 +2,11 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.InputMismatchException;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 public class FileIO {
@@ -24,10 +26,11 @@ public class FileIO {
 		try (Scanner scr = new Scanner(new File(inFile)); PrintWriter pw = new PrintWriter(outFile)) {
 			
 			while (scr.hasNextLine()) {
+				
 				String stretched = "";
-				char[] stringArray = scr.nextLine().toCharArray();
-				for (char ch: stringArray) {
-					if (" .,?!".indexOf(ch) != -1) {
+				
+				for (char ch: scr.nextLine().toCharArray()) {
+					if (" .,?!".indexOf(ch) == -1) {
 						stretched += new String(new char[5]).replace('\0', ch);
 					} else {
 						stretched += ch;
@@ -39,7 +42,9 @@ public class FileIO {
 		} catch(FileNotFoundException e) {
 			System.out.print("error opening: " + outFile);
 		}
+		
 		System.out.println("stretch finished");
+		
 	}
 
 	/**
@@ -55,10 +60,13 @@ public class FileIO {
 	 * @param outFile
 	 */
 	public static void sortNumbers(String inFile, String outFile) {
+		
 		System.out.println("sortNumbers opening files " + inFile + ", " + outFile);
 		
 		try (Scanner scr = new Scanner(new File(inFile)); PrintWriter pw = new PrintWriter(outFile)) {
+			
 			List<Integer> wholeNumbers = new ArrayList<>();
+			
 			while (scr.hasNextLine()) {
 				try {
 					wholeNumbers.add(Integer.parseInt(scr.nextLine()));
@@ -66,10 +74,12 @@ public class FileIO {
 		        	continue;
 		        }
 			}
+			
 			sortNumbers(wholeNumbers);
 			for (int wholeNumber: wholeNumbers) {
 				pw.println(Integer.toString(wholeNumber));
 			}
+			
 		} catch(FileNotFoundException e) {
 			System.out.print("error opening: " + outFile);
 		}
@@ -92,10 +102,42 @@ public class FileIO {
 	public static void wordCount(String inFile, String outFile) {
 		System.out.println("wordCount opening files " + inFile + ", " + outFile);
 		
-		//TODO
+		try (Scanner scr = new Scanner(new File(inFile)); PrintWriter pw = new PrintWriter(outFile)) {
+			
+			Map<String, Integer> wordCount = new HashMap<>();
+			
+			while (scr.hasNextLine()) {
+				
+				String[] words = scr.nextLine().replaceAll("[^a-zA-Z ]", "").toLowerCase().split("\\s+");;
+				
+				for (String word: words) {
+					if (!wordCount.containsKey(word)) {
+						wordCount.put(word, 1);
+					} else {
+						int count = wordCount.get(word);
+						wordCount.put(word, count + 1);
+					}
+				}
+			}
+			
+			List<String> uniqueTokens = new ArrayList<>(wordCount.keySet());
+			sortWords(uniqueTokens);
+			
+			int totalWords = 0;
+			for (String token: uniqueTokens) {
+				totalWords += wordCount.get(token);
+				pw.println(String.format("%s: %d", token, wordCount.get(token)));
+			}
+			pw.println(String.format("\nTotal words: %d", totalWords));
+			
+		} catch(FileNotFoundException e) {
+			System.out.print("error opening: " + outFile);
+		}
 		
 		System.out.println("wordCount finished");
 	}
+	
+	
 
 	/**
 	 * Open inFile1 and inFile2 for reading and outFile for writing.
@@ -149,7 +191,7 @@ public class FileIO {
 	 */
 	public static void sortNumbers(List<Integer> list) {
 		
-		//TODO
+		Collections.sort(list);
 		
 	}
 
@@ -159,7 +201,7 @@ public class FileIO {
 	 */
 	public static void sortWords(List<String> list) {
 		
-		//TODO
+		Collections.sort(list);
 		
 	}
 
