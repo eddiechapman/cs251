@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.InputMismatchException;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
@@ -180,7 +181,35 @@ public class FileIO {
 	public static void mergeFileContents(String inFile1, String inFile2, String outFile) {
 		System.out.println("merge opening file " + inFile1 + ", " + inFile2 + ", " + outFile);
 		
-		//TODO
+		try (Scanner scr1 = new Scanner(new File(inFile1)); 
+				Scanner scr2 = new Scanner(new File(inFile2));
+				PrintWriter pw = new PrintWriter(outFile)) {
+			
+			Map<Integer, String> union = new HashMap<>();
+			List<String> people = new ArrayList<>();
+			
+			while (scr1.hasNextLine()) {
+				people.add(scr1.nextLine());
+			}
+			
+			while (scr2.hasNextLine()) {
+				people.add(scr2.nextLine());
+			}
+			
+			for (String person: people) {
+				String[] personInfo = person.split(":"); 
+				union.put(Integer.parseInt(personInfo[0]), personInfo[1]);
+			}
+			
+			for (int i=0; i<=Collections.max(union.keySet()); i++) {
+				if (union.get(i) != null) {
+					pw.println(String.format("%d:%s", i, union.get(i)));
+				}
+			}
+			
+		} catch(FileNotFoundException e) {
+			System.out.print("error opening: " + outFile);
+		}
 		
 		System.out.println("merge finished");
 	}
