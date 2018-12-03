@@ -25,7 +25,8 @@ public class FileIO {
 			
 			while (scr.hasNextLine()) {
 				String stretched = "";
-				for (char ch: scr.nextLine().toCharArray()) {
+				char[] stringArray = scr.nextLine().toCharArray();
+				for (char ch: stringArray) {
 					if (" .,?!".indexOf(ch) != -1) {
 						stretched += new String(new char[5]).replace('\0', ch);
 					} else {
@@ -56,7 +57,22 @@ public class FileIO {
 	public static void sortNumbers(String inFile, String outFile) {
 		System.out.println("sortNumbers opening files " + inFile + ", " + outFile);
 		
-		//TODO
+try (Scanner scr = new Scanner(new File(inFile)); PrintWriter pw = new PrintWriter(outFile)) {
+			
+			while (scr.hasNextLine()) {
+
+				try {
+		            return Integer.parseInt(string);
+		        } catch (NumberFormatException exception) {
+		            // Output expected NumberFormatException.
+		            Logging.log(exception);
+		        }
+				pw.println(stretched);
+			}
+			
+		} catch(FileNotFoundException e) {
+			System.out.print("error opening: " + outFile);
+		}
 		
 		System.out.println("sortNumbers finished");
 
