@@ -57,19 +57,19 @@ public class FileIO {
 	public static void sortNumbers(String inFile, String outFile) {
 		System.out.println("sortNumbers opening files " + inFile + ", " + outFile);
 		
-try (Scanner scr = new Scanner(new File(inFile)); PrintWriter pw = new PrintWriter(outFile)) {
-			
+		try (Scanner scr = new Scanner(new File(inFile)); PrintWriter pw = new PrintWriter(outFile)) {
+			List<Integer> wholeNumbers = new ArrayList<>();
 			while (scr.hasNextLine()) {
-
 				try {
-		            return Integer.parseInt(string);
+					wholeNumbers.add(Integer.parseInt(scr.nextLine()));
 		        } catch (NumberFormatException exception) {
-		            // Output expected NumberFormatException.
-		            Logging.log(exception);
+		        	continue;
 		        }
-				pw.println(stretched);
 			}
-			
+			sortNumbers(wholeNumbers);
+			for (int wholeNumber: wholeNumbers) {
+				pw.println(Integer.toString(wholeNumber));
+			}
 		} catch(FileNotFoundException e) {
 			System.out.print("error opening: " + outFile);
 		}
