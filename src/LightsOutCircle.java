@@ -20,14 +20,15 @@ public class LightsOutCircle extends JButton {
 		this.col = col;
 		setContentAreaFilled(false);
 	}
-	public boolean isYellow()
-	{
+	
+	public boolean isYellow() {
 		return currentColor == Color.yellow;
 	}
-	public boolean isBlack()
-	{
+	
+	public boolean isBlack() {
 		return currentColor == Color.black;
 	}
+	
 	public void paint(Graphics g) {
 		
 		Graphics2D g2d = (Graphics2D)g;
@@ -47,16 +48,14 @@ public class LightsOutCircle extends JButton {
 		g2d.fillOval(4,4,getWidth()-10,
 				getHeight()-10);
 	}
-	public void setYellow()
-	{
+	
+	public void setYellow() {
 		currentColor = Color.yellow;
 		this.setBackground(currentColor);
 	}
 
-	public void setBlack()
-	{
+	public void setBlack() {
 		currentColor = Color.black;
 		this.setBackground(currentColor);
-
 	}
 }
