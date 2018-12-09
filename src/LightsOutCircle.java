@@ -15,10 +15,12 @@ public class LightsOutCircle extends JButton {
 	public final int col;
 	
 	public LightsOutCircle(int row, int col) {
+		
 		super();
 		this.row = row;
 		this.col = col;
 		setContentAreaFilled(false);
+		
 	}
 	
 	public boolean isYellow() {
@@ -47,6 +49,7 @@ public class LightsOutCircle extends JButton {
 		g2d.setColor(currentColor);
 		g2d.fillOval(4,4,getWidth()-10,
 				getHeight()-10);
+		
 	}
 	
 	public void setYellow() {
